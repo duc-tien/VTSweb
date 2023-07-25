@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding:0;
+}
+
+.box{
+    width: 50px;
+    height: 30px;
+    background-color: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.boxOn{
+    background-color: rgb(0, 255, 64);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.boxOFF{
+    background-color: #d2d2d2;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}

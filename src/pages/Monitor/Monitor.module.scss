@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.box{
+    overflow-y: scroll;
+    width: 100vw;
+    height: 90vh;
+    position: relative;
+    box-sizing: border-box;
+}
+::-webkit-scrollbar{
+    width: 10px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: grey;
+    border-radius: 20px;
+}
+
+.box1{
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
+}
+.box2{
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
+}
+.box3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}

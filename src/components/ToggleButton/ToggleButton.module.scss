@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding:0;
+}
+
+.box{
+    width: 50px;
+    height: 30px;
+    background-color: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button{
+    background-color: #d2d2d2;
+    width: 50px;
+    height: 30px;
+    border-radius: 20px;
+    cursor: pointer;
+    position: relative;
+    transition: 0.2s;
+}
+.button::before{
+    position: absolute;
+    content: '';
+    background-color: #FFF;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    margin: 3px;
+    transition: 0.2s;
+}
+input:checked + .button{
+    background-color: rgb(17, 255, 0);
+}
+input:checked + .button::before{
+    transform: translateX(20px) ;
+}
+.check{
+    display: none;
+}

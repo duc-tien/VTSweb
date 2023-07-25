@@ -1,0 +1,84 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.container{
+    display: flex;
+}
+.content{
+    flex:1;
+    position: relative;
+}
+
+.sidebar{
+    background-color: #FF932F;
+    width: 300px;
+    height: 100vh;
+    position: sticky;
+    top:0;
+    left:0;
+    bottom:0;
+    box-shadow: 2px 0 7px black;
+}
+
+.logo{
+    display: flex;
+    justify-content: space-around;
+}
+.bk_logo{
+    height: 100px;
+    width: 100px;
+    background-color: #FFF;
+    border-radius: 10px;
+    box-shadow: 2px 2px 7px black;
+}
+.vts_logo{
+    height: 100px;
+    width: 100px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 7px black;
+}
+.menu{
+    position: relative;
+    list-style: none;
+    padding: 0;
+    height: 80vh;
+}
+.menu li:hover{
+    background: skyblue;
+}
+.menu li{
+    padding: 0.5rem;
+    margin: 20px 20px;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 2px 2px 7px black;
+    width: 250px;
+    height: 50px;
+}
+.menu a{
+    font-size: 30px;
+    color: black;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.menu i{
+    margin-left: 10px;
+}
+
+.logout{
+    position: absolute;
+    bottom: 0;
+}
+.name{
+    font-size: 30px;
+    text-align: center;
+}
