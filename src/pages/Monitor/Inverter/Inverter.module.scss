@@ -6,36 +6,44 @@
     border-radius: 10px;
     h1{
         text-align: center;
-        font-size: 25px;
+        font-size: 2vw;
+        font-family: 'Poppin', sans-serif;
+    }
+    h2{
+        text-align: center;
+        font-size: 1.2vw;
+    }
+    span{
+        font-size: 1vw;
+    }
+    .wait{
+        font-size: 1.2vw;
+        border-bottom: 0.5px solid black;
+        font-weight: 600;
     }
     .status{
         position: absolute;
-        top:80px;
-        left: 20px;
-        width: 200px;
-        height: 120px;
+        top:10vh;
+        left: 1vw;
+        width: 12vw;
+        height: 15vh;
         border-radius: 10px;
         box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 0.2), 0px 4px 5px 0px rgb(0 0 0 / 0.14), 0px 1px 10px 0px rgb(0 0 0 / 0.12);
-        h1{
-            font-size: 20px;
-        }
         .button1{
-            margin-top: 20px;
             display: flex;
             justify-content: center;
+            gap: 1vw;
+            margin-top: 1vh;
         }
     }
     .direction{
         position: absolute;
-        top:80px;
-        left: 240px;
-        width: 200px;
-        height: 120px;
+        top:10vh;
+        left: 14vw;
+        width: 12vw;
+        height: 15vh;
         border-radius: 10px;
         box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 0.2), 0px 4px 5px 0px rgb(0 0 0 / 0.14), 0px 1px 10px 0px rgb(0 0 0 / 0.12);
-        h1{
-            font-size: 20px;
-        }
         .button2{
             margin-top: 10px;
             display: flex;
@@ -44,30 +52,21 @@
     }
     .motor{
         position: absolute;
-        top:80px;
-        right: 20px;
-        width: 220px;
-        height: 120px;
+        top:10vh;
+        right: 1vw;
+        width: 18vw;
+        height: 15vh;
         border-radius: 10px;
         box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 0.2), 0px 4px 5px 0px rgb(0 0 0 / 0.14), 0px 1px 10px 0px rgb(0 0 0 / 0.12);
-        h1{
-            font-size: 20px;
-        }
         .content{
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+            gap: 3.5vw;
+            text-align: center;
+            margin-left: 0.5vw ;
         }
         .speed{
             margin-top: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            text-align: center;
         }
-    }
-    .wait{
-         border-bottom: 0.5px solid black;
-         font-size: 18px;
-         font-weight: 600;
     }
 }

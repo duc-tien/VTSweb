@@ -8,16 +8,16 @@ function Inverter({startup, stop, forward, reverse, setpoint, speed}) {
             <h1>Inverter</h1>
 
             <div className={Styles.status}>
-                <h1>Motor Status</h1>
+                <h2>Motor Status</h2>
                 <div className={Styles.button1}>
-                    <Status name="" status={startup.value} />
-                    <Status name="" status={stop.value} />
+                    <Status name="Startup" status={startup.value} />
+                    <Status name="Stop" status={stop.value} />
                     <Status></Status>
                 </div>
             </div>
 
             <div className={Styles.direction}>
-                <h1>Motor Direction</h1>
+                <h2>Motor Direction</h2>
                 <div className={Styles.button2}>
                     <Status name="Forward" status={forward.value} />
                     <Status name="Reverse" status={reverse.value} />
@@ -25,7 +25,7 @@ function Inverter({startup, stop, forward, reverse, setpoint, speed}) {
             </div>
 
             <div className={Styles.motor}>
-                <h1>Motor</h1>
+                <h2>Motor</h2>
                 <div className={Styles.content}>
                     <div>
                         <span>Write SetPoint</span> <br />
@@ -38,7 +38,7 @@ function Inverter({startup, stop, forward, reverse, setpoint, speed}) {
                     </div>
                 </div>
                 <div className={Styles.speed}>
-                    <span>Speed</span>
+                    <span>Speed</span><br />
                     <span className={Styles.wait}>{speed.value} RPM</span>
                 </div>
             </div>
