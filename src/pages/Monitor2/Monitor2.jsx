@@ -1,10 +1,8 @@
 import Status from "@src/components/Vali2/Status";
 import Switch from "@src/components/Vali2/Switch";
 import Input from "@src/components/Vali2/Input";
-import back from "@src/assets/Subtract.svg";
 
 import style from "./Monitor2.module.scss";
-import { HubConnectionBuilder, HttpTransportType } from "@microsoft/signalr";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -20,36 +18,38 @@ import { Link } from "react-router-dom";
 const css = classNames.bind(style);
 
 function Monitor() {
-  const [connection, setConnection] = useState(null);
   const [data, setData] = useState({});
 
   useEffect(() => {
-    hubConnection.start()
-  }, [])
-  useEffect(() => {
-    hubConnection.connection.on("TagChanged", (msg) => {
-      let obj = JSON.parse(msg);
+    hubConnection.start();
+    hubConnection.connection.on("TagChanged", (res) => {
+      const obj = JSON.parse(res);
       obj.value === "TRUE" ? (obj.value = true) : null;
       obj.value === "FALSE" ? (obj.value = false) : null;
-      setData((prev) => {
-        const listData = { ...prev, [obj.name]: obj };
-        return listData;
+      setData((prevData) => {
+        const updateData = { ...prevData, [obj.name]: obj };
+        return updateData;
       });
-    })
+    });
+    return () => {
+      hubConnection.connection.off("TagChanged");
+    };
   }, [hubConnection.connection]);
+
+  console.log(data);
 
   return (
     <>
       <div>
         <HeaderItem pageName="Monitor" />
         <div className={css("tab1")}>
-                    <Link to="/monitor">
-                        <span>Monitor 1</span>
-                    </Link>
-                    <Link to="/monitor2">
-                        <span>Monitor 2</span>
-                    </Link>
-                </div>      
+          <Link to="/monitor">
+            <span>Monitor 1</span>
+          </Link>
+          <Link to="/monitor2">
+            <span>Monitor 2</span>
+          </Link>
+        </div>
       </div>
       <div className={css("body")}>
         <div className={css("body__left")}>
@@ -84,13 +84,25 @@ function Monitor() {
                   <div className={css("stt-off")}></div>
                 </div>
               </div>
-              <div className={css("info__input")}>
-                <span>Set Point</span>
-                <Input width="110px" />
-                <span>Frequency</span>
-                <Input width="110px" />
-                <span>Current</span>
-                <Input width="300px" />
+              <div className={css("info__param")}>
+                <h3>SET POINT</h3>
+                <h5>Speed</h5>
+                <span>
+                  <Input width="60px" height="24px" />
+                  <button>OK</button>
+                </span>
+                <h5>Frequency</h5>
+                <span>
+                  <Input width="60px" height="24px" />
+                  <button>OK</button>
+                </span>
+              </div>
+              <div className={css("info__param")}>
+                <h3>CURRENT</h3>
+                <h5>Speed</h5>
+                <span className={css("value__current")}>???</span>
+                <h5>Frequency</h5>
+                <span className={css("value__current")}>???</span>
               </div>
             </div>
           </div>
@@ -180,27 +192,24 @@ function Monitor() {
                 <Switch name="I0.7" />
               </div>
               <div className={css("plc2__info-input")}>
-                <span>
-                  <span className={css("info-input-title")}>
-                    Thời gian đèn vàng
+                <div className={css("input-param")}>
+                  <span>
+                    <span className={css("info-input-title")}>YellowTime</span>
+                    <Input width="60px" />
+                    <span>(s)</span>
                   </span>
-                  <Input width="80px" />
-                  (s)
-                </span>
-                <span>
-                  <span className={css("info-input-title")}>
-                    Thời gian đèn đỏ
+                  <span>
+                    <span className={css("info-input-title")}>RedTime</span>
+                    <Input width="60px" />
+                    (s)
                   </span>
-                  <Input width="80px" />
-                  (s)
-                </span>
-                <span>
-                  <span className={css("info-input-title")}>
-                    Thời gian đèn xanh
+                  <span>
+                    <span className={css("info-input-title")}>GreenTime</span>
+                    <Input width="60px" />
+                    (s)
                   </span>
-                  <Input width="80px" />
-                  (s)
-                </span>
+                </div>
+                <button>CONFIRM</button>
               </div>
             </div>
           </div>
