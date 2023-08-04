@@ -13,6 +13,9 @@ import {
   faArrowRotateLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState, useRef } from "react";
+import HeaderItem from "../../components/HeaderItem/HeaderItem";
+import hubConnection from "../../services/signalR/hubConnection";
+import { Link } from "react-router-dom";
 
 const css = classNames.bind(style);
 
@@ -20,40 +23,33 @@ function Monitor() {
   const [connection, setConnection] = useState(null);
   const [data, setData] = useState({});
 
-  // useEffect(() => {
-  //   const connect = new HubConnectionBuilder()
-  //     .withUrl("https://mqttcloud.azurewebsites.net/myhub")
-  //     .withAutomaticReconnect()
-  //     .build();
-
-  //   setConnection(connect);
-  // }, []);
-
-  // useEffect(() => {
-  //   if (connection) {
-  //     connection
-  //       .start()
-  //       .then(() => {
-  //         connection.on("TagChanged", (msg) => {
-  //           let obj = JSON.parse(msg);
-  //           obj.value === "TRUE" ? (obj.value = true) : null;
-  //           obj.value === "FALSE" ? (obj.value = false) : null;
-  //           setData((prev) => {
-  //             const listData = { ...prev, [obj.name]: obj };
-  //             return listData;
-  //           });
-  //         });
-  //       })
-  //       .catch((error) => console.log(error));
-  //   }
-  // }, [connection]);
-  // console.log(data);
+  useEffect(() => {
+    hubConnection.start()
+  }, [])
+  useEffect(() => {
+    hubConnection.connection.on("TagChanged", (msg) => {
+      let obj = JSON.parse(msg);
+      obj.value === "TRUE" ? (obj.value = true) : null;
+      obj.value === "FALSE" ? (obj.value = false) : null;
+      setData((prev) => {
+        const listData = { ...prev, [obj.name]: obj };
+        return listData;
+      });
+    })
+  }, [hubConnection.connection]);
 
   return (
     <>
-      <div className={css("header")}>
-        <img src={back} className={css("size")} />
-        MONITOR
+      <div>
+        <HeaderItem pageName="Monitor" />
+        <div className={css("tab1")}>
+                    <Link to="/monitor">
+                        <span>Monitor 1</span>
+                    </Link>
+                    <Link to="/monitor2">
+                        <span>Monitor 2</span>
+                    </Link>
+                </div>      
       </div>
       <div className={css("body")}>
         <div className={css("body__left")}>

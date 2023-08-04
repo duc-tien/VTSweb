@@ -2,9 +2,11 @@ import { Link } from "react-router-dom"
 import Styles from "./Dashboard.module.scss"
 import BK_logo from "../../assets/HCMUT_official_logo.png"
 import VTS_logo from "../../assets/VTS_logo.jpg"
+import { useEffect, useState } from "react"
+import hubConnection from "../../services/signalR/hubConnection"
 
 function Dashboard() {
-
+    
 
     return (
         <div className={Styles.container}>
@@ -23,12 +25,6 @@ function Dashboard() {
                             <Link to="/">
                                 <i className="fa-solid fa-gauge"></i>
                                 <span>Dashboard</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/diagram">
-                                <i className="fa-brands fa-microsoft"></i>
-                                <span>Diagram</span>
                             </Link>
                         </li>
                         <li>
