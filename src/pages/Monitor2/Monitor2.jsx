@@ -42,15 +42,19 @@ function Monitor() {
     <>
       <div>
         <HeaderItem pageName="Monitor" />
-        <div className={css("tab1")}>
-          <Link to="/monitor">
-            <span>Monitor 1</span>
-          </Link>
-          <Link to="/monitor2">
-            <span>Monitor 2</span>
-          </Link>
+        <div className={css("tab")}>
+                    <div className={css('tab1')}>
+                    <Link to="/monitor">
+                        <span>Monitor 1</span>
+                    </Link>
+                    </div>
+                    <div className={css('tab2')}>
+                    <Link to="/monitor2">
+                        <span>Monitor 2</span>
+                    </Link>
+                    </div>
+                </div>
         </div>
-      </div>
       <div className={css("body")}>
         <div className={css("body__left")}>
           <div className={css("inverter")}>

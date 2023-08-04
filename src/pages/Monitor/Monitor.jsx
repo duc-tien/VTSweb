@@ -64,20 +64,24 @@ function Monitor() {
         }
 
     }, [hubConnection.connection])
-    console.log(data);
+
 
     return (
         <div className={css('container')}>
             <div>
                 <HeaderItem pageName="Monitor" />
-                <div className={css("tab1")}>
-                    <Link to="/monitor">
-                        <span>Monitor 1</span>
-                    </Link>
-                    <Link to="/monitor2">
-                        <span>Monitor 2</span>
-                    </Link>
-                </div>      
+                <div className={css("tab")}>
+                    <div className={css('tab1')}>
+                        <Link to="/monitor">
+                            <span>Monitor 1</span>
+                        </Link>
+                    </div>
+                    <div className={css('tab2')}>
+                        <Link to="/monitor2">
+                            <span>Monitor 2</span>
+                        </Link>
+                    </div>
+                </div>
             </div>
 
             <div className={css('box')}>
