@@ -3,13 +3,23 @@ import classNames from "classnames/bind"
 
 const css = classNames.bind(Styles)
 
-function ToggleButton({ id, name }) {
+function ToggleButton({ id, name, onclick }) {
+     
+     const handleClick = () => {
+          console.log({
+               "name" : "afdsafd",
+               "value": "111.11",
+               "timestamp": "2022-08"
+                })
+     }
+
+
      return (
           <div className={css('container')}>
                <span>{name}</span>
                <div className={css('box')}>
                     <input type="checkbox" id={id} className={css('check')} />
-                    <label htmlFor={id} className={css('button')}></label>
+                    <label htmlFor={id} className={css('button')} onClick={handleClick}></label>
                </div>
           </div>
      )

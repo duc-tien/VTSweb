@@ -36,7 +36,6 @@ function Monitor() {
     };
   }, [hubConnection.connection]);
 
-  console.log(data);
 
   return (
     <>

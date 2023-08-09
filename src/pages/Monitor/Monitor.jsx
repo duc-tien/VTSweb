@@ -33,9 +33,10 @@ function Monitor() {
         reverse: { value: 'FALSE' },
         setpoint: { value: '__' },
         speed: { value: '__' },
-        sto5d150: { value: 'FALSE' },
-        stogt500: { value: 'FALSE' },
-        rvp510: { value: '__' },
+        O5D150: { value: 'FALSE' },
+        KI6000: { value: 'FALSE' },
+        RVP510: { value: '__' },
+        UGT524: { value: '__'},
         toggle1: { value: 'FALSE' },
         toggle2: { value: 'FALSE' },
         toggle3: { value: 'FALSE' },
@@ -64,7 +65,7 @@ function Monitor() {
         }
 
     }, [hubConnection.connection])
-
+    
 
     return (
         <div className={css('container')}>
@@ -135,9 +136,10 @@ function Monitor() {
                 </div>
                 <div className={css('box3')}>
                     <AL1322
-                        sto5d150={data.sto5d150}
-                        stogt500={data.stogt500}
-                        rvp510={data.rvp510}
+                        O5D150={data.O5D150}
+                        KI6000={data.KI6000}
+                        RVP510={data.RVP510}
+                        UGT524={data.UGT524}
                     />
                 </div>
             </div>
