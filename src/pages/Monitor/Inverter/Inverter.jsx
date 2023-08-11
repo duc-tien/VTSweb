@@ -8,13 +8,13 @@ const css = classNames.bind(Styles)
 function Inverter({startup, stop, forward, reverse, setpoint, speed}) {
     const handInput = () => {
         const dataInput = document.getElementById('changeData')
-        // hubConnection.connection.invoke('SEND',
-        //     {
-        //         "name" : "writeInverter",
-        //         "value": `${dataInput.value}`,
-        //         "timestamp": "2022-08"
-        //     }
-        // )
+        hubConnection.connection.invoke("SEND",
+            {
+                "name" : "writeInverter",
+                "value": `${dataInput.value}`,
+                "timestamp": "2022-08"
+            }
+        )
         }
     return (
         <div className={css('inverter')}>
