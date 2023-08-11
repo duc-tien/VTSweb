@@ -11,7 +11,7 @@ function PLCKit({ led1, led2, led3, led4, led5, led6, led7, led8, setpointSpeed,
    
     const handInput1 = () => {
         const dataInput1 = document.getElementById('changeData1')
-        hubConnection.connection.invoke('TagChanged',
+        hubConnection.connection.invoke('SEND',
             {
                 "name" : "setpoint_speed",
                 "value": `${dataInput1.value}`,
@@ -21,7 +21,7 @@ function PLCKit({ led1, led2, led3, led4, led5, led6, led7, led8, setpointSpeed,
     }
     const handInput2 = () => {
         const dataInput2 = document.getElementById('changeData2')
-        hubConnection.connection.invoke('TagChanged',
+        hubConnection.connection.invoke('SEND',
             {
                 "name" : "setpoint_position",
                 "value": `${dataInput2.value}`,

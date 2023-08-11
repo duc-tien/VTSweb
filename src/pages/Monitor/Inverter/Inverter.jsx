@@ -8,7 +8,7 @@ const css = classNames.bind(Styles)
 function Inverter({startup, stop, forward, reverse, setpoint, speed}) {
     const handInput = () => {
         const dataInput = document.getElementById('changeData')
-        hubConnection.connection.invoke('TagChanged',
+        hubConnection.connection.invoke('SEND',
             {
                 "name" : "writeInverter",
                 "value": `${dataInput.value}`,
