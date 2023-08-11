@@ -9,11 +9,11 @@ function Inverter({startup, stop, forward, reverse, setpoint, speed}) {
     const handInput = () => {
         const dataInput = document.getElementById('changeData')
         hubConnection.connection.invoke("SEND",
-            {
+            JSON.stringify({
                 "name" : "writeInverter",
                 "value": `${dataInput.value}`,
                 "timestamp": "2022-08"
-            }
+            })
         )
         }
     return (

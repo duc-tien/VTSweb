@@ -12,21 +12,21 @@ function PLCKit({ led1, led2, led3, led4, led5, led6, led7, led8, setpointSpeed,
     const handInput1 = () => {
         const dataInput1 = document.getElementById('changeData1')
         hubConnection.connection.invoke("SEND",
-            {
+            JSON.stringify({
                 "name" : "setpoint_speed",
                 "value": `${dataInput1.value}`,
                 "timestamp": "2022-08"
-            }
+            })
         )
     }
     const handInput2 = () => {
         const dataInput2 = document.getElementById('changeData2')
         hubConnection.connection.invoke("SEND",
-            {
+            JSON.stringify({
                 "name" : "setpoint_position",
                 "value": `${dataInput2.value}`,
                 "timestamp": "2022-08"
-            }
+            })
         )
     }
 
