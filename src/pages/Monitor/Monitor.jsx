@@ -37,14 +37,14 @@ function Monitor() {
         KI6000: { value: 'FALSE' },
         RVP510: { value: '__' },
         UGT524: { value: '__'},
-        toggle1: { value: 'FALSE' },
-        toggle2: { value: 'FALSE' },
-        toggle3: { value: 'FALSE' },
-        toggle4: { value: 'FALSE' },
-        toggle5: { value: 'FALSE' },
-        toggle6: { value: 'FALSE' },
-        toggle7: { value: 'FALSE' },
-        toggle8: { value: 'FALSE' },
+        led1: { value: 'FALSE' },
+        led2: { value: 'FALSE' },
+        led3: { value: 'FALSE' },
+        led4: { value: 'FALSE' },
+        led5: { value: 'FALSE' },
+        led6: { value: 'FALSE' },
+        led7: { value: 'FALSE' },
+        led8: { value: 'FALSE' },
         setpointSpeed: { value: '__' },
         setpointPosition: { value: '__' },
     })
@@ -97,14 +97,14 @@ function Monitor() {
                     />
 
                     <PLCKit
-                        toggle1={data.toggle1}
-                        toggle2={data.toggle2}
-                        toggle3={data.toggle3}
-                        toggle4={data.toggle4}
-                        toggle5={data.toggle5}
-                        toggle6={data.toggle6}
-                        toggle7={data.toggle7}
-                        toggle8={data.toggle8}
+                        led1={data.led1}
+                        led2={data.led2}
+                        led3={data.led3}
+                        led4={data.led4}
+                        led5={data.led5}
+                        led6={data.led6}
+                        led7={data.led7}
+                        led8={data.led8}
                         setpointSpeed={data.setpointSpeed}
                         setpointPosition={data.setpointPosition}
                     />

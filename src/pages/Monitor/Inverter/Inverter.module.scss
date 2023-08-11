@@ -13,9 +13,10 @@
         text-align: center;
         font-size: 1.2vw;
     }
-    span{
+    span,button{
         font-size: 1vw;
     }
+    
     .wait{
         font-size: 1.2vw;
         border-bottom: 0.5px solid black;
@@ -59,6 +60,9 @@
         border-radius: 10px;
         box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 0.2), 0px 4px 5px 0px rgb(0 0 0 / 0.14), 0px 1px 10px 0px rgb(0 0 0 / 0.12);
         .content{
+            input{
+                width: 2vw;
+            }
             display: flex;
             gap: 3.5vw;
             text-align: center;
@@ -67,6 +71,17 @@
         .speed{
             margin-top: 10px;
             text-align: center;
+        }
+    }
+    .buttonInput{
+        height: 2.5vh;
+        width: 2vw;
+        margin-left: 0.5vw;
+        background-color: #FF932F;
+        border-radius: 0.5vw;
+        &:hover{
+            cursor: pointer;
+            background-color: rgb(255, 155, 0, 0.6)
         }
     }
 }
