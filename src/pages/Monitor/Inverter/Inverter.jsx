@@ -12,7 +12,6 @@ function Inverter({startup, stop, forward, reverse, setpoint, speed}) {
             JSON.stringify({
                 "name" : "writeInverter",
                 "value": `${dataInput.value}`,
-                "timestamp": "2022-08"
             })
         )
         }
