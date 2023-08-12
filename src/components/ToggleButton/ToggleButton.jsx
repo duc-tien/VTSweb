@@ -15,9 +15,12 @@ function ToggleButton({ id, name, data }) {
 
      const handleClick = () => {
           setToggle(!toggle)
-          console.log(Changed)
-
-          // hubConnection.connection.invoke('TagChanged', Changed)
+        //  console.log(Changed)
+          hubConnection.connection.invoke("SEND", 
+               JSON.stringify({
+                  "name" : `${data}`,
+                  "value": `${toggle}`,
+               }))
       }
 
 
