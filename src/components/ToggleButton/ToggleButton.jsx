@@ -11,7 +11,6 @@ function ToggleButton({ id, name, data }) {
      const Changed = {
           "name" : `${data}`,
           "value": `${toggle}`,
-          "timestamp": "2022-08"
            }
 
      const handleClick = () => {
