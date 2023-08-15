@@ -39,7 +39,7 @@ function Recharts() {
         obj.time = `${h}:${m}`;
         setData((prev) => {
           const listData = [...prev, obj];
-          if (listData.length > 50) {
+          if (listData.length > 500) {
             listData.shift();
           }
           return listData;
