@@ -1,11 +1,20 @@
 import Styles from "./Inverter.module.scss"
 import Status from "../../../components/Status/Status"
 import classNames from "classnames/bind"
+import hubConnection from "../../../services/signalR/hubConnection"
 
 const css = classNames.bind(Styles)
 
 function Inverter({startup, stop, forward, reverse, setpoint, speed}) {
-
+    const handInput = () => {
+        const dataInput = document.getElementById('changeData')
+        hubConnection.connection.invoke("SEND",
+            JSON.stringify({
+                "name" : "writeInverter",
+                "value": `${dataInput.value}`,
+            })
+        )
+        }
     return (
         <div className={css('inverter')}>
             <h1>Inverter</h1>
@@ -31,8 +40,8 @@ function Inverter({startup, stop, forward, reverse, setpoint, speed}) {
                 <div className={css('content')}>
                     <div>
                         <span>Write SetPoint</span> <br />
-                        <span>___</span>
-                        <button>OK</button>
+                        <input id="changeData" type="text" className={css('wait')} />
+                        <button className={css('buttonInput')} onClick={handInput}>OK</button>
                     </div>
                     <div>
                         <span>Read SetPoint</span> <br />

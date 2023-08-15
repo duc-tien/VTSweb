@@ -12,8 +12,8 @@
         font-size: 1vw;
     }
     input{
-        width: 2vw;
-        height: 2vh;
+        width: 4vw;
+        height: 3vh;
         font-size: 1.2vw;
     }
     .buttonOut{
@@ -49,8 +49,19 @@
     }
     .wait{
         border-bottom: 0.5px solid black;
-        width: 30px;
+        width: 5vw;
         font-size: 18px;
         font-weight: 600;
+    }
+    .buttonInput{
+        height: 2.5vh;
+        width: 2vw;
+        margin-left: 0.5vw;
+        background-color: #FF932F;
+        border-radius: 0.5vw;
+        &:hover{
+            cursor: pointer;
+            background-color: rgb(255, 155, 0, 0.6)
+        }
     }
 }

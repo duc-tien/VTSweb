@@ -1,17 +1,27 @@
+import { useState } from "react"
+import hubConnection from "../../services/signalR/hubConnection"
 import Styles from "./ToggleButton.module.scss"
 import classNames from "classnames/bind"
 
 const css = classNames.bind(Styles)
 
-function ToggleButton({ id, name, onclick }) {
-     
+function ToggleButton({ id, name, data }) {
+     const [toggle, setToggle] = useState('true')
+
+     const Changed = {
+          "name" : `${data}`,
+          "value": `${toggle}`,
+           }
+
      const handleClick = () => {
-          console.log({
-               "name" : "afdsafd",
-               "value": "111.11",
-               "timestamp": "2022-08"
-                })
-     }
+          setToggle(!toggle)
+        //  console.log(Changed)
+          hubConnection.connection.invoke("SEND", 
+               JSON.stringify({
+                  "name" : `${data}`,
+                  "value": `${toggle}`,
+               }))
+      }
 
 
      return (
