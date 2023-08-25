@@ -43,7 +43,7 @@ function Monitor() {
       hubConnection.connection.off("TagChanged");
     };
   }, [hubConnection.connection]);
-  console.log(data);
+  //console.log(data);
 
   const sendData = (type) => {
     let obj;

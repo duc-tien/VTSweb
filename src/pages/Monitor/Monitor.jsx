@@ -71,6 +71,9 @@ function Monitor() {
         <div className={css('container')}>
             <div>
                 <HeaderItem pageName="Monitor" />
+            </div>
+
+            <div className={css('box')}>
                 <div className={css("tab")}>
                     <div className={css('tab1')}>
                         <Link to="/monitor">
@@ -83,9 +86,6 @@ function Monitor() {
                         </Link>
                     </div>
                 </div>
-            </div>
-
-            <div className={css('box')}>
                 <div className={css('box1')}>
                     <SensorKit
                         tempTW2000={data.tempTW2000}
