@@ -1,6 +1,6 @@
 import axios from "axios"
 
 const axiosClient = axios.create({
-    baseURL: 'https://retoolapi.dev/M3YNuo/data'
+    baseURL: 'https://mqttcloud.azurewebsites.net/api/DataVali/'
 })
 export default axiosClient

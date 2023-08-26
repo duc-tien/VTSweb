@@ -2,7 +2,6 @@
     padding: 10px;
     width: 98vw;
     height: 5vh;
-  //  position: relative;
     border-radius: 10px;
     box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 0.2), 0px 4px 5px 0px rgb(0 0 0 / 0.14), 0px 1px 10px 0px rgb(0 0 0 / 0.12);
     margin: 15px;
@@ -10,12 +9,16 @@
     justify-content: space-around;
     font-size: 1.2vw;
     button{
-        width: 150px;
-        height: 20px;
+        width: 10vw;
+        height: 3vh;
         border-radius: 10px;
-        font-size: 20px;
+        font-size: 1.2vw;
         background-color: orange;
         cursor: pointer;
+        
+    }
+    button:hover{
+        background-color: rgba(255, 147, 47,0.4);
     }
     input{
         cursor: pointer;
@@ -24,22 +27,60 @@
 }
 .table{
     width: 98vw;
-    height: 79vh;
-    margin: 15px;
-    border-radius: 10px;
+    height: 77vh;
+    margin: 0 15px;
+    border-radius: 0 0 1vw 1vw ;
     box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 0.2), 0px 4px 5px 0px rgb(0 0 0 / 0.14), 0px 1px 10px 0px rgb(0 0 0 / 0.12);
+    overflow-y: scroll;
+    table {
+        font-size: 1.2vw !important;
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 0.521vw;
+        box-shadow: 0 0 1.042vw rgba(0, 0, 0, 0.15);
+        width: 100%;
+        tr:nth-child(even) {background-color: #f2f2f2;}
+        th,
+        td {
+            padding: 0.625vw 0.781vw;
+        }
+        tbody > tr > th {
+            font-weight: normal;
+        }
+    }
 }
   
-.name{
-    width: inherit;
-    height: 4vh;
-    border-bottom: 1px solid black;
-    display: flex;
-    justify-content: space-around;
+.heading{
+    width: 98vw;
+    height: 5vh;
+    border-radius: 1vw 1vw 0 0; 
+    margin: 0 15px;
+    box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 0.2), 0px 4px 5px 0px rgb(0 0 0 / 0.14), 0px 1px 10px 0px rgb(0 0 0 / 0.12);
+    position: relative;
+    background-color: #FF932F;
+    color: white;
     font-size: 1.2vw;
+    font-weight: normal;
+    .name{
+        position: absolute;
+        left: 14vw;
+        top: 1vh;
+    }
+    .time{
+        position: absolute;
+        right: 22vw;
+        top: 1vh;
+    }
+    .value{
+        position: absolute;
+        left: 39vw;
+        top: 1vh;
+    }
+    
 }
+
 .select{
-    width: 10vw;
+    width: 15vw;
     height: 3vh;
     cursor: pointer;
     border-radius: 0.5vw;

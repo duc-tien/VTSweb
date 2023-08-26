@@ -1,8 +1,8 @@
 import axiosClient from "./axiosClient"
 
 const productApi = {
-    getAll: () => {
-        const url = ''
+    getAll: (add) => {
+        const url = `${add}`
         return axiosClient.get(url)
     }}
 
