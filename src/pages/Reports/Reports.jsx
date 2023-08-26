@@ -67,7 +67,7 @@ function Reports() {
                     <input id="endDay" type="date" />
                 </>
 
-                <button onClick={handleAPI}>API</button>
+                <button onClick={handleAPI}>Search</button>
                 <button onClick={handleExportExcel}>Export Excel</button>
                 
             </div>
