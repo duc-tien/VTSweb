@@ -33,7 +33,7 @@ function Monitor() {
         reverse: { value: 'FALSE' },
         setpoint: { value: '__' },
         speed: { value: '__' },
-        O5D150: { value: 'FALSE' },
+        O5D150: { value: '__' },
         KI6000: { value: 'FALSE' },
         RVP510: { value: '__' },
         UGT524: { value: '__'},

@@ -72,9 +72,9 @@ function Reports() {
                 
             </div>
             <div className={css("heading")}>
-                   <span className={css("name")}>TagName</span>
-                   <span className={css("value")}>Value</span>
-                   <span className={css("time")}>TimeStamp</span>
+                   <span >TagName</span>
+                   <span >Value</span>
+                   <span >TimeStamp</span>
                 </div>
             <div className={css("table")}>
                 <table>
@@ -82,9 +82,9 @@ function Reports() {
                         {ExData != [] ? (
                             ExData.map((data) => (
                                 <tr key={data.index}>
-                                    <th>{TagName}</th>
-                                    <th>{data.value}</th>
-                                    <th>{data.timestamp}</th>
+                                    <th className={css("name1")}>{TagName}</th>
+                                    <th className={css("value1")}>{data.value}</th>
+                                    <th className={css("time1")}>{data.timestamp}</th>
                                 </tr>
                             ))
                         ) : (
