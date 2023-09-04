@@ -2,50 +2,45 @@ import { Link } from "react-router-dom"
 import Styles from "./Dashboard.module.scss"
 import BK_logo from "../../assets/HCMUT_official_logo.png"
 import VTS_logo from "../../assets/VTS_logo.jpg"
-import { useEffect, useState } from "react"
-import hubConnection from "../../services/signalR/hubConnection"
+import classNames from "classnames/bind"
+
+const css = classNames.bind(Styles)
 
 function Dashboard() {
     
 
     return (
-        <div className={Styles.container}>
-            <div className={Styles.sidebar}>
-                <div className={Styles.logo}>
-                    <img src={VTS_logo} alt="Logo BK" className={Styles.vts_logo} />
-                    <img src={BK_logo} alt="Logo BK" className={Styles.bk_logo} />
+        <div className={css('container')}>
+            <div className={css('sidebar')}>
+                <div className={css('logo')}>
+                    <img src={VTS_logo} alt="Logo BK" className={css('vts_logo')} />
+                    <img src={BK_logo} alt="Logo BK" className={css('bk_logo')} />
                 </div>
 
                 <nav>
-                    <ul className={Styles.menu}>
-                        <li className={Styles.name}>
+                    <div className={css('menu')}>
+                        <div className={css('name')}>
                             <span>VTSauto WEB</span>
-                        </li>
-                        <li className={Styles.active}>
-                            <Link to="/">
-                                <i className="fa-solid fa-gauge"></i>
-                                <span>Dashboard</span>
-                            </Link>
-                        </li>
-                        <li>
+                        </div>
+                        <div className={css('active')}>
+                                <span><i className="fa-solid fa-gauge"></i>Dashboard</span>
+                        </div>
+                        <div className={css('monitor')}>
                             <Link to="/monitor">
-                                <i className="fa-solid fa-desktop"></i>
-                                <span>Monitor</span>
+                                <span><i className="fa-solid fa-desktop"></i>Monitor</span>
                             </Link>
-                        </li>
-                        <li>
+                        </div>
+                        <div className={css('reports')}>
                             <Link to="/reports">
-                                <i className="fa-solid fa-download"></i>
-                                <span>Reports</span>
+                                <span><i className="fa-solid fa-download"></i>Reports</span>
                             </Link>
-                        </li>
-                        <li className={Styles.logout}>
+                        </div>
+                        <div className={css('logout')}>
                             <Link to="/">
-                                <i className="fa-solid fa-right-from-bracket fa-rotate-180"></i>
-                                <span>Log Out</span>
+                                <span><i className="fa-solid fa-right-from-bracket fa-rotate-180"></i>Log Out</span>
                             </Link>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </nav>
             </div>
         </div>

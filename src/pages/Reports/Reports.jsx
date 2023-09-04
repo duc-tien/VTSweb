@@ -3,12 +3,15 @@ import HeaderItem from "../../components/HeaderItem/HeaderItem"
 import classNames from "classnames/bind"
 import fetchProducts from "../../services/api/Api"
 import { useState } from "react"
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+
 
 const css = classNames.bind(Styles)
 
 
 function Reports() {
     const [ExData, setExData] = useState([])
+    const [TData, setTData] = useState([])
     const [TagName, setTagName] = useState([])
 
     const handleExportExcel = () => {
@@ -23,12 +26,39 @@ function Reports() {
         const name_api = document.getElementById('tagName').value
         const response = fetchProducts(`${name_api}/${time1_api}/${time2_api}`)
         response.then(res => {
-            setExData(res.data)
+            const changeData =  res.data.map((change) =>{
+                if (change.value === 'TRUE'){
+                    return(
+                        {value : 1,
+                          timestamp: change.timestamp
+                        }
+                    )}
+                    else if (change.value === 'FALSE') {
+                        return(
+                            {
+                                value : 0,
+                                timestamp: change.timestamp 
+                            }
+                        )
+                    }
+                    else {
+                        return(
+                            {
+                                value : change.value,
+                                timestamp: change.timestamp  
+                            }
+                        )
+                    }
+                
+            })
+            setExData(changeData)
+            setTData(res.data)
             setTagName(name_api)
+         //   console.log(changeData)
         })
-        //    console.log(response)
     }
-
+    
+   // console.log(ExData)
     return (
         <div>
             <HeaderItem pageName="Reports" />
@@ -57,6 +87,13 @@ function Reports() {
                     <option value="RVP510">RVP510</option>
                     <option value="UGT524">UGT524</option>
                     <option value="KI6000">KI6000</option>
+                    <option value="RedLightA">RedLightA</option>
+                    <option value="YellowLightA">YellowLightA</option>
+                    <option value="GreenLightA">GreenLightA</option>
+                    <option value="RedLightB">RedLightB</option>
+                    <option value="YellowLightB">YellowLightB</option>
+                    <option value="GreenLightB">GreenLightB</option>
+                    <option value="Inverter_Speed_PV">Inverter_Speed_PV</option>
                 </select>
                 <>
                     <label htmlFor="startDay">Start Day</label>
@@ -69,18 +106,31 @@ function Reports() {
 
                 <button onClick={handleAPI}>Search</button>
                 <button onClick={handleExportExcel}>Export Excel</button>
-                
+
             </div>
+            {ExData != [] ? (
+                <LineChart width={1510} height={300} data={ExData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="timestamp"
+                        tick={{ fontSize: 13, fill: '#333', textAnchor: 'middle' }} />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line type="monotone" dataKey="value" name={false} stroke="#000000" dot={false} legendType="none" />
+                </LineChart>
+            ) : (
+                <div> <span>loading</span></div>
+            )}
             <div className={css("heading")}>
-                   <span >TagName</span>
-                   <span >Value</span>
-                   <span >TimeStamp</span>
-                </div>
+                <span >TagName</span>
+                <span >Value</span>
+                <span >TimeStamp</span>
+            </div>
             <div className={css("table")}>
                 <table>
                     <tbody>
-                        {ExData != [] ? (
-                            ExData.map((data) => (
+                        {TData != [] ? (
+                            TData.map((data) => (
                                 <tr key={data.index}>
                                     <th className={css("name1")}>{TagName}</th>
                                     <th className={css("value1")}>{data.value}</th>
