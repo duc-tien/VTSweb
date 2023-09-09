@@ -43,14 +43,14 @@ function PLCKit({ led1, led2, led3, led4, led5, led6, led7, led8, setpointSpeed,
             </div>
 
             <div className={css('buttonIn')}>
-                <ToggleButton id="I0.0" name="I0.0" data="toggle1"/>
-                <ToggleButton id="I0.1" name="I0.1" data="toggle2"/>
-                <ToggleButton id="I0.2" name="I0.2" data="toggle3"/>
-                <ToggleButton id="I0.3" name="I0.3" data="toggle4"/>
-                <ToggleButton id="I0.4" name="I0.4" data="toggle5"/>
-                <ToggleButton id="I0.5" name="I0.5" data="toggle6"/>
-                <ToggleButton id="I0.6" name="I0.6" data="toggle7"/>
-                <ToggleButton id="I0.7" name="I0.7" data="toggle8"/>
+               <Status name="I0.0" status={led1.value} />
+                <Status name="I0.1" status={led2.value} />
+                <Status name="I0.2" status={led3.value} />
+                <Status name="I0.3" status={led4.value} />
+                <Status name="I0.4" status={led5.value} />
+                <Status name="I0.5" status={led6.value} />
+                <Status name="I0.6" status={led7.value} />
+                <Status name="I0.7" status={led8.value} />
             </div>
 
             <img src={PLC_Kit} alt="PLC" className={css('pic')} />

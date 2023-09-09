@@ -43,16 +43,16 @@ function Monitor() {
       hubConnection.connection.off("TagChanged");
     };
   }, [hubConnection.connection]);
-  //console.log(data);
+ // console.log(data);
 
   const sendData = (type) => {
     let obj;
     switch (type) {
       case "speed": {
-        obj = {
-          name: "Speed",
-          value: Number(speed),
-        };
+        obj = [{
+          id: "Channel1.Device1.Inverter_Speed_SP",
+          v: Number(speed),
+        }];
 
         // if (enable.current) {
         //   setTimeout(() => {
@@ -82,7 +82,7 @@ function Monitor() {
       default:
         console.log("no data");
     }
-    console.log(JSON.stringify(obj));
+  //  console.log(JSON.stringify(obj));
     hubConnection.connection.send("SEND", JSON.stringify(obj));
   };
 
