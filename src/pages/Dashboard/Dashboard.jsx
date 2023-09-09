@@ -35,11 +35,11 @@ function Dashboard() {
                                 <span><i className="fa-solid fa-download"></i>Reports</span>
                             </Link>
                         </div>
-                        <div className={css('logout')}>
+                        {/* <div className={css('logout')}>
                             <Link to="/">
                                 <span><i className="fa-solid fa-right-from-bracket fa-rotate-180"></i>Log Out</span>
                             </Link>
-                        </div>
+                        </div> */}
                     </div>
                 </nav>
             </div>
