@@ -28,24 +28,30 @@ function Reports() {
         response.then(res => {
             const changeData =  res.data.map((change) =>{
                 if (change.value === 'TRUE'){
+                    // const arr = ExData[0].timestamp
+                    // const newarr = arr.slice(0, 19)
                     return(
                         {value : 1,
-                          timestamp: change.timestamp
+                          timestamp: change.timestamp.slice(0,19)
                         }
                     )}
                     else if (change.value === 'FALSE') {
+                        // const arr = ExData[0].timestamp
+                        // const newarr = arr.slice(0, 19)
                         return(
                             {
                                 value : 0,
-                                timestamp: change.timestamp 
+                                timestamp: change.timestamp.slice(0,19)
                             }
                         )
                     }
                     else {
+                        // const arr = ExData[0].timestamp
+                        // const newarr = arr.slice(0, 19)
                         return(
                             {
                                 value : change.value,
-                                timestamp: change.timestamp  
+                                timestamp: change.timestamp.slice(0,19) 
                             }
                         )
                     }
@@ -58,7 +64,6 @@ function Reports() {
         })
     }
     
-   // console.log(ExData)
     return (
         <div>
             <HeaderItem pageName="Reports" />
@@ -109,14 +114,14 @@ function Reports() {
 
             </div>
             {ExData != [] ? (
-                <LineChart width={1510} height={300} data={ExData}>
+                <LineChart width={1510} height={315} data={ExData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="timestamp"
                         tick={{ fontSize: 13, fill: '#333', textAnchor: 'middle' }} />
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Line type="monotone" dataKey="value" name={false} stroke="#000000" dot={false} legendType="none" />
+                    <Line type="stepAfter" dataKey="value" name={false} stroke="#000000" dot={false} legendType="none" />
                 </LineChart>
             ) : (
                 <div> <span>loading</span></div>
@@ -133,8 +138,8 @@ function Reports() {
                             TData.map((data) => (
                                 <tr key={data.index}>
                                     <th className={css("name1")}>{TagName}</th>
-                                    <th className={css("value1")}>{data.value}</th>
-                                    <th className={css("time1")}>{data.timestamp}</th>
+                                    <th className={css("value1")}>{data.value.slice(0,6)}</th>
+                                    <th className={css("time1")}>{data.timestamp.slice(0,19)}</th>
                                 </tr>
                             ))
                         ) : (

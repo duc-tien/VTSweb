@@ -33,7 +33,6 @@ function SensorKit({tempTW2000, statusIF6123, statusUGT524, distanceUGT524, coun
                 <span className={css('wait')}>{countRB3100.value}</span>
                 <span>Position</span>
                 <span className={css('wait')}>{angleRB3100.value}</span>
-                <span>Resolution</span>
             </div>
 
         </div>

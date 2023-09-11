@@ -45,8 +45,18 @@ function Monitor() {
         led6: { value: 'FALSE' },
         led7: { value: 'FALSE' },
         led8: { value: 'FALSE' },
-        setpointSpeed: { value: '__' },
-        setpointPosition: { value: '__' },
+        toggle1: { value: 'FALSE' },
+        toggle2: { value: 'FALSE' },
+        toggle3: { value: 'FALSE' },
+        toggle4: { value: 'FALSE' },
+        toggle5: { value: 'FALSE' },
+        toggle6: { value: 'FALSE' },
+        toggle7: { value: 'FALSE' },
+        toggle8: { value: 'FALSE' },
+        Position_PV: { value: '__' },
+        Speed_PV: { value: '__' },
+        Position_SP: { value: '__' },
+        Speed_SP: { value: '__' },
     })
 
     useEffect(() => {
@@ -105,8 +115,18 @@ function Monitor() {
                         led6={data.led6}
                         led7={data.led7}
                         led8={data.led8}
-                        setpointSpeed={data.setpointSpeed}
-                        setpointPosition={data.setpointPosition}
+                        toggle1={data.toggle1}
+                        toggle2={data.toggle2}
+                        toggle3={data.toggle3}
+                        toggle4={data.toggle4}
+                        toggle5={data.toggle5}
+                        toggle6={data.toggle6}
+                        toggle7={data.toggle7}
+                        toggle8={data.toggle8}
+                        Position_PV={data.Position_PV}
+                        Speed_PV={data.Speed_PV}
+                        Position_SP={data.Position_SP}
+                        Speed_SP={data.Speed_SP}
                     />
 
                 </div>
