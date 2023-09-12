@@ -70,6 +70,7 @@ function Reports() {
 
             <div className={css("control")}>
                 <select id="tagName" className={css("select")}>
+                    <option value="" disabled>Vali Siemens</option>
                     <option value="tempTW2000">tempTW2000</option>
                     <option value="statusIF6123">statusIF6123</option>
                     <option value="distanceUGT524">distanceUGT524</option>
@@ -82,23 +83,22 @@ function Reports() {
                     <option value="ledYellow">ledYellow</option>
                     <option value="ledRed">ledRed</option>
                     <option value="DCMotor">DCMotor</option>
-                    <option value="startup">startup</option>
+                    <option value="start">start</option>
                     <option value="stop">stop</option>
-                    <option value="forward">forward</option>
-                    <option value="reverse">reverse</option>
-                    <option value="speed">speed</option>
-                    <option value="setpoint">setpoint</option>
+                    <option value="VFD_Speed_PV">VFD_Speed_PV</option>
+                    <option value="VFD_Speed_PV">VFD_Speed_SP</option>
                     <option value="O5D150">O5D150</option>
                     <option value="RVP510">RVP510</option>
                     <option value="UGT524">UGT524</option>
                     <option value="KI6000">KI6000</option>
+                    <option value="" disabled>Vali TrafficLight</option>
                     <option value="RedLightA">RedLightA</option>
                     <option value="YellowLightA">YellowLightA</option>
                     <option value="GreenLightA">GreenLightA</option>
                     <option value="RedLightB">RedLightB</option>
                     <option value="YellowLightB">YellowLightB</option>
                     <option value="GreenLightB">GreenLightB</option>
-                    <option value="Inverter_Speed_PV">Inverter_Speed_PV</option>
+                    <option value="Speed_PV">Inverter_Speed_PV</option>
                 </select>
                 <>
                     <label htmlFor="startDay">Start Day</label>
@@ -114,16 +114,42 @@ function Reports() {
 
             </div>
             {ExData != [] ? (
-                <LineChart width={1510} height={315} data={ExData}>
+                TagName === "countRB3100" || TagName === "angleRB3100" || TagName === "distanceUGT524"? 
+                (<LineChart width={1510} height={315} data={ExData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="timestamp"
                         tick={{ fontSize: 13, fill: '#333', textAnchor: 'middle' }} />
-                    <YAxis />
+                    <YAxis domain={[0,550]}/>
                     <Tooltip />
                     <Legend />
                     <Line type="stepAfter" dataKey="value" name={false} stroke="#000000" dot={false} legendType="none" />
-                </LineChart>
-            ) : (
+                </LineChart>)
+                :
+                ( 
+                    TagName === "tempTW2000" ? 
+                    (<LineChart width={1510} height={315} data={ExData}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="timestamp"
+                            tick={{ fontSize: 13, fill: '#333', textAnchor: 'middle' }} />
+                        <YAxis  domain={[0,ExData.value]}/>
+                        <Tooltip />
+                        <Legend />
+                        <Line type="stepAfter" dataKey="value" name={false} stroke="#000000" dot={false} legendType="none" />
+                    </LineChart>)
+                    :
+                    (<LineChart width={1510} height={315} data={ExData}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="timestamp"
+                            tick={{ fontSize: 13, fill: '#333', textAnchor: 'middle' }} />
+                        <YAxis domain={[true, false]} ticks={[false, true]}/>
+                        <Tooltip />
+                        <Legend />
+                        <Line type="stepAfter" dataKey="value" name={false} stroke="#000000" dot={false} legendType="none" />
+                    </LineChart>)
+                )
+            ) 
+            : 
+            (
                 <div> <span>loading</span></div>
             )}
             <div className={css("heading")}>

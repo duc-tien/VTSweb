@@ -57,6 +57,8 @@ function Monitor() {
         Speed_PV: { value: '__' },
         Position_SP: { value: '__' },
         Speed_SP: { value: '__' },
+        VFD_Speed_PV: { value: '__' },
+        VFD_Speed_SP:{ value: '__' },
     })
 
     useEffect(() => {
@@ -149,8 +151,8 @@ function Monitor() {
                         stop={data.stop}
                         forward={data.forward}
                         reverse={data.reverse}
-                        setpoint={data.setpoint}
-                        speed={data.speed}
+                        setpoint={data.VFD_Speed_SP}
+                        speed={data.VFD_Speed_PV}
                     />
 
                 </div>

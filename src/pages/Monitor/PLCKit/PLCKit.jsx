@@ -1,43 +1,79 @@
 import Styles from "./PLCKit.module.scss"
 import Status from "../../../components/Status/Status"
-import ToggleButton from "../../../components/ToggleButton/ToggleButton"
 import PLC_Kit from "../../../assets/PLC Kit.png"
 import classNames from "classnames/bind"
 import hubConnection from "../../../services/signalR/hubConnection"
 import Indicator from "../../../components/Status/Indicator"
+import { ToastContainer,toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
 
 const css = classNames.bind(Styles)
 
 function PLCKit({ led1, led2, led3, led4, led5, led6, led7, led8,
-     toggle1, toggle2, toggle3, toggle4, toggle5, toggle6, toggle7, toggle8,
-     Position_PV, Speed_PV,
-     }) {
-   
+    toggle1, toggle2, toggle3, toggle4, toggle5, toggle6, toggle7, toggle8,
+    Position_PV, Speed_PV,
+}) {
+
+    const sendData = (id, value) => {
+        hubConnection.connection.invoke("SEND",
+            JSON.stringify([{
+                "id": "PLC.Step_Motor." + `${id}`,
+                "v": value,
+            }])
+        )
+    }
+
+    const handle1 = () => {
+        sendData("Start", 1)
+        setTimeout(() => {
+            sendData("Start", 0)
+            toast("Completed")
+        }, 200)
+    }
+    const handle2 = () => {
+        sendData("SetHome", 1)
+        setTimeout(() => {
+            sendData("SetHome", 0)
+            toast("Completed")
+        }, 200)
+    }
+    const handle3 = () => {
+        sendData("Auto/Man", 1)
+        toast("Completed")
+    }
+    const handle4 = () => {
+        sendData("Auto/Man", 0)
+        toast("Completed")
+    }
+
     const handInput1 = () => {
         const dataInput1 = document.getElementById('changeData1')
         hubConnection.connection.invoke("SEND",
             JSON.stringify([{
-                "id" : "PLC.Vali_Siemens.Speed_SP",
+                "id": "PLC.Vali_Siemens.Speed_SP",
                 "v": `${dataInput1.value}`,
             }])
         )
+        toast("Completed")
     }
     const handInput2 = () => {
         const dataInput2 = document.getElementById('changeData2')
         hubConnection.connection.invoke("SEND",
             JSON.stringify([{
-                "id" : "PLC.Vali_Siemens.Position_SP",
+                "id": "PLC.Vali_Siemens.Position_SP",
                 "v": `${dataInput2.value}`,
             }])
         )
+        toast("Completed")
     }
 
     return (
         <div className={css('plcKit')}>
+            <ToastContainer/>
             <h1 className={css('tittle')}>PLC Kit</h1>
 
             <div className={css('buttonIn')}>
-               <Status name="I0.0" status={toggle1.value} />
+                <Status name="I0.0" status={toggle1.value} />
                 <Status name="I0.1" status={toggle2.value} />
                 <Status name="I0.2" status={toggle3.value} />
                 <Status name="I0.3" status={toggle4.value} />
@@ -60,6 +96,12 @@ function PLCKit({ led1, led2, led3, led4, led5, led6, led7, led8,
             <img src={PLC_Kit} alt="PLC" className={css('pic')} />
 
             <div className={css('item')}>
+                <div className={css('setPoint')}>
+                    <button onClick={handle1} className={css('buttonHandle')}>Start</button> <br />
+                    <button onClick={handle2} className={css('buttonHandle')}>Set Home</button><br />
+                    <button onClick={handle3} className={css('buttonHandle')}>Man</button>
+                    <button onClick={handle4} className={css('buttonHandle')}>Auto</button>
+                </div>
                 <div className={css('setPoint')}>
                     <span>SET POINT</span> <br />
                     <span>Speed</span> <br />

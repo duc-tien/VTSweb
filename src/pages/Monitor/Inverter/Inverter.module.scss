@@ -1,7 +1,7 @@
 .inverter{
    position: relative;
     width: 46vw;
-    height: 40vh;
+    height: 38vh;
     box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 0.2), 0px 4px 5px 0px rgb(0 0 0 / 0.14), 0px 1px 10px 0px rgb(0 0 0 / 0.12);
     border-radius: 10px;
     h1{
@@ -27,13 +27,13 @@
         top:10vh;
         left: 1vw;
         width: 12vw;
-        height: 15vh;
+        height: 17vh;
         border-radius: 10px;
         box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 0.2), 0px 4px 5px 0px rgb(0 0 0 / 0.14), 0px 1px 10px 0px rgb(0 0 0 / 0.12);
         .button1{
             display: flex;
             justify-content: center;
-            gap: 1vw;
+            gap: 4vw;
             margin-top: 1vh;
         }
         .stbutton{
@@ -48,20 +48,20 @@
         top:10vh;
         left: 14vw;
         width: 12vw;
-        height: 15vh;
+        height: 17vh;
         border-radius: 10px;
         box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 0.2), 0px 4px 5px 0px rgb(0 0 0 / 0.14), 0px 1px 10px 0px rgb(0 0 0 / 0.12);
         .button2{
             margin-top: 10px;
-            margin-left: 20px;
+          //  margin-left: 20px;
             display: flex;
             justify-content: center;
-            gap:3vw;
+            gap:4vw;
         }
         .stbutton{
             display: flex;
             justify-content: center;
-            gap: 4vw;
+            gap: 2vw;
             margin-top: 1vh;
         }
     }
@@ -70,7 +70,7 @@
         top:10vh;
         right: 1vw;
         width: 18vw;
-        height: 15vh;
+        height: 17vh;
         border-radius: 10px;
         box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 0.2), 0px 4px 5px 0px rgb(0 0 0 / 0.14), 0px 1px 10px 0px rgb(0 0 0 / 0.12);
         .content{
@@ -93,6 +93,30 @@
         margin-left: 0.5vw;
         background-color: #FF932F;
         border-radius: 0.5vw;
+        &:hover{
+            cursor: pointer;
+            background-color: rgb(255, 155, 0, 0.6)
+        }
+    }
+    .buttonHandle{
+        height: 3vh;
+        width: 4vw;
+        margin-left: 0.5vw;
+        background-color: #FF932F;
+        border-radius: 0.5vw;
+        &:hover{
+            cursor: pointer;
+            background-color: rgb(255, 155, 0, 0.6)
+        }
+    }
+    .buttonHandleReset{
+        height: 3vh;
+        width: 4vw;
+        margin-left: 0.5vw;
+        background-color: #FF932F;
+        border-radius: 0.5vw;
+        margin-left: 4vw;
+        margin-top: 1vh;
         &:hover{
             cursor: pointer;
             background-color: rgb(255, 155, 0, 0.6)
