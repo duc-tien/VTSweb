@@ -126,12 +126,24 @@ function Reports() {
                 </LineChart>)
                 :
                 ( 
-                    TagName === "tempTW2000" ? 
+                    TagName === "tempTW2000" || TagName === "O5D150"? 
                     (<LineChart width={1510} height={315} data={ExData}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="timestamp"
                             tick={{ fontSize: 13, fill: '#333', textAnchor: 'middle' }} />
                         <YAxis  domain={[0,ExData.value]}/>
+                        <Tooltip />
+                        <Legend />
+                        <Line type="stepAfter" dataKey="value" name={false} stroke="#000000" dot={false} legendType="none" />
+                    </LineChart>)
+                    :
+                    (
+                    TagName === "RVP510" || TagName === "UGT524" ? 
+                    (<LineChart width={1510} height={315} data={ExData}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="timestamp"
+                            tick={{ fontSize: 13, fill: '#333', textAnchor: 'middle' }} />
+                        <YAxis domain={[0, 1100]}/>
                         <Tooltip />
                         <Legend />
                         <Line type="stepAfter" dataKey="value" name={false} stroke="#000000" dot={false} legendType="none" />
@@ -146,6 +158,7 @@ function Reports() {
                         <Legend />
                         <Line type="stepAfter" dataKey="value" name={false} stroke="#000000" dot={false} legendType="none" />
                     </LineChart>)
+                    )
                 )
             ) 
             : 
