@@ -27,10 +27,6 @@ function Monitor() {
         ledRed: { value: 'FALSE' },
         ledYellow: { value: 'FALSE' },
         DCMotor: { value: 'FALSE' },
-        startup: { value: 'FALSE' },
-        stop: { value: 'FALSE' },
-        forward: { value: 'FALSE' },
-        reverse: { value: 'FALSE' },
         setpoint: { value: '__' },
         speed: { value: '__' },
         O5D150: { value: '__' },
@@ -55,10 +51,10 @@ function Monitor() {
         toggle8: { value: 'FALSE' },
         Position_PV: { value: '__' },
         Speed_PV: { value: '__' },
-        Position_SP: { value: '__' },
-        Speed_SP: { value: '__' },
         VFD_Speed_PV: { value: '__' },
         VFD_Speed_SP:{ value: '__' },
+        VFD_Direction_Status:{ value: 'FALSE' },
+        VFD_Run:{ value: 'FALSE' },
     })
 
     useEffect(() => {
@@ -127,8 +123,6 @@ function Monitor() {
                         toggle8={data.toggle8}
                         Position_PV={data.Position_PV}
                         Speed_PV={data.Speed_PV}
-                        Position_SP={data.Position_SP}
-                        Speed_SP={data.Speed_SP}
                     />
 
                 </div>
@@ -147,10 +141,8 @@ function Monitor() {
                     />
 
                     <Inverter
-                        startup={data.startup}
-                        stop={data.stop}
-                        forward={data.forward}
-                        reverse={data.reverse}
+                        statusMotor={data.VFD_Run}
+                        direction={data.VFD_Direction_Status}
                         setpoint={data.VFD_Speed_SP}
                         speed={data.VFD_Speed_PV}
                     />

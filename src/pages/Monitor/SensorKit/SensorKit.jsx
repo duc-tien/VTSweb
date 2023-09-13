@@ -6,7 +6,7 @@ import classNames from "classnames/bind"
 const css = classNames.bind(Styles)
 
 function SensorKit({tempTW2000, statusIF6123, statusUGT524, distanceUGT524, countRB3100, angleRB3100}) {
-    
+    const newAngle = angleRB3100.value.slice(0,6)
     return (
         <div className={css('sensorKit')}>
             <h1>Sensor Kit</h1>
@@ -32,7 +32,7 @@ function SensorKit({tempTW2000, statusIF6123, statusUGT524, distanceUGT524, coun
                 <span>Pulse count</span>
                 <span className={css('wait')}>{countRB3100.value}</span>
                 <span>Position</span>
-                <span className={css('wait')}>{angleRB3100.value}</span>
+                <span className={css('wait')}>{newAngle}</span>
             </div>
 
         </div>

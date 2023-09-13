@@ -28,16 +28,12 @@ function Reports() {
         response.then(res => {
             const changeData =  res.data.map((change) =>{
                 if (change.value === 'TRUE'){
-                    // const arr = ExData[0].timestamp
-                    // const newarr = arr.slice(0, 19)
                     return(
                         {value : 1,
                           timestamp: change.timestamp.slice(0,19)
                         }
                     )}
                     else if (change.value === 'FALSE') {
-                        // const arr = ExData[0].timestamp
-                        // const newarr = arr.slice(0, 19)
                         return(
                             {
                                 value : 0,
@@ -46,8 +42,6 @@ function Reports() {
                         )
                     }
                     else {
-                        // const arr = ExData[0].timestamp
-                        // const newarr = arr.slice(0, 19)
                         return(
                             {
                                 value : change.value,
@@ -83,10 +77,14 @@ function Reports() {
                     <option value="ledYellow">ledYellow</option>
                     <option value="ledRed">ledRed</option>
                     <option value="DCMotor">DCMotor</option>
-                    <option value="start">start</option>
-                    <option value="stop">stop</option>
-                    <option value="VFD_Speed_PV">VFD_Speed_PV</option>
-                    <option value="VFD_Speed_PV">VFD_Speed_SP</option>
+                    <option value="start">DCMotor.Start</option>
+                    <option value="stop">DCMotor.Stop</option>
+                    <option value="" disabled>PLC Kit</option>
+                    <option value="Position_PV">PLC.CurrentPosition</option>
+                    <option value="Speed_PV">PLC.CurrentSpeed</option>
+                    <option value="" disabled>Inverter Kit</option>
+                    <option value="VFD_Speed_SP">Inverter.ReadSetPoint</option>
+                    <option value="VFD_Speed_PV">Inverter.Speed</option>
                     <option value="O5D150">O5D150</option>
                     <option value="RVP510">RVP510</option>
                     <option value="UGT524">UGT524</option>
@@ -114,7 +112,7 @@ function Reports() {
 
             </div>
             {ExData != [] ? (
-                TagName === "countRB3100" || TagName === "angleRB3100" || TagName === "distanceUGT524"? 
+                TagName === "countRB3100" || TagName === "angleRB3100" || TagName === "distanceUGT524" || TagName === "VFD_Speed_SP" || TagName === "VFD_Speed_PV"? 
                 (<LineChart width={1510} height={315} data={ExData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="timestamp"
@@ -126,12 +124,12 @@ function Reports() {
                 </LineChart>)
                 :
                 ( 
-                    TagName === "tempTW2000" || TagName === "O5D150"? 
+                    TagName === "tempTW2000" || TagName === "O5D150" || TagName === "Position_PV" || TagName === "Speed_PV" ? 
                     (<LineChart width={1510} height={315} data={ExData}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="timestamp"
                             tick={{ fontSize: 13, fill: '#333', textAnchor: 'middle' }} />
-                        <YAxis  domain={[0,ExData.value]}/>
+                        <YAxis  domain={TagName === "Position_PV" || TagName === "Speed_PV" ?  [-100,100] : [0,ExData.value]}/>
                         <Tooltip />
                         <Legend />
                         <Line type="stepAfter" dataKey="value" name={false} stroke="#000000" dot={false} legendType="none" />
