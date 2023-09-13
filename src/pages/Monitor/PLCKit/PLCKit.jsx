@@ -99,7 +99,6 @@ function PLCKit({ led1, led2, led3, led4, led5, led6, led7, led8,
                 <div className={css('setPoint')}>
                     <button onClick={handle1} className={css('buttonHandle')}>Start</button> <br />
                     <button onClick={handle2} className={css('buttonHandle')}>Set Home</button><br />
-                    {/* <button onClick={handle3} className={css('buttonHandle')}>Man</button> */}
                     <button onClick={handle4} className={css('buttonHandle')}>Auto Mode</button>
                 </div>
                 <div className={css('setPoint')}>
