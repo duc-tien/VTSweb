@@ -28,16 +28,12 @@ function Reports() {
         response.then(res => {
             const changeData =  res.data.map((change) =>{
                 if (change.value === 'TRUE'){
-                    // const arr = ExData[0].timestamp
-                    // const newarr = arr.slice(0, 19)
                     return(
                         {value : 1,
                           timestamp: change.timestamp.slice(0,19)
                         }
                     )}
                     else if (change.value === 'FALSE') {
-                        // const arr = ExData[0].timestamp
-                        // const newarr = arr.slice(0, 19)
                         return(
                             {
                                 value : 0,
@@ -46,8 +42,6 @@ function Reports() {
                         )
                     }
                     else {
-                        // const arr = ExData[0].timestamp
-                        // const newarr = arr.slice(0, 19)
                         return(
                             {
                                 value : change.value,
@@ -87,8 +81,10 @@ function Reports() {
                     <option value="stop">DCMotor.Stop</option>
                     <option value="Position_PV">PLC.CurrentPosition</option>
                     <option value="Speed_PV">PLC.CurrentSpeed</option>
-                    <option value="VFD_Speed_PV">Inverter.Speed_PV</option>
-                    <option value="VFD_Speed_SP">Inverter.Speed_SP</option>
+                    <option value="Speed_PV">Inverter.Speed_PV</option>
+                    <option value="Speed_SP">Inverter.Speed_SP</option>
+                    <option value="VFD_Direction_Status">Inverter.Direction</option>
+                    <option value="VFD_Run">Inverter.StatusMotor</option>
                     <option value="O5D150">O5D150</option>
                     <option value="RVP510">RVP510</option>
                     <option value="UGT524">UGT524</option>
@@ -128,7 +124,7 @@ function Reports() {
                 </LineChart>)
                 :
                 ( 
-                    TagName === "tempTW2000" || TagName === "O5D150"? 
+                    TagName === "tempTW2000" || TagName === "O5D150" || TagName === "Position_PV" || TagName === "Speed_SP"? 
                     (<LineChart width={1510} height={315} data={ExData}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="timestamp"

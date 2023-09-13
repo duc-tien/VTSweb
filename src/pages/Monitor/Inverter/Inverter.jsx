@@ -9,22 +9,19 @@ import { useState } from "react"
 
 const css = classNames.bind(Styles)
 
-function Inverter({ startup, stop, forward, reverse, setpoint, speed }) {
-    const [Color1, setColor1] = useState("RED")
-    const [Color2, setColor2] = useState("GREEN")
-    const [Color3, setColor3] = useState("RED")
-    const [Color4, setColor4] = useState("TRUE")
-    const [Color5, setColor5] = useState("FALSE")
+function Inverter({ statusMotor, direction, setpoint, speed }) {
+
     const handInput = () => {
         const dataInput = document.getElementById('changeData')
         hubConnection.connection.invoke("SEND",
-            JSON.stringify({
+            JSON.stringify([{
                 "id": "PLC.Inverter.VFD_Speed_SP",
-                "v": `${dataInput.value}`,
-            })
+                "v": dataInput.value,
+            }])
         )
         toast("Completed")
     }
+
     const sendData = (id, value) => {
         hubConnection.connection.invoke("SEND",
             JSON.stringify([{
@@ -40,7 +37,7 @@ function Inverter({ startup, stop, forward, reverse, setpoint, speed }) {
             sendData("Start", 0)
             toast("Completed")
         }, 200);
-        setColor1("GREEN")
+
     }
     const handleStop = () => {
         sendData("Stop", 1)
@@ -48,7 +45,7 @@ function Inverter({ startup, stop, forward, reverse, setpoint, speed }) {
             sendData("Stop", 0)
             toast("Completed")
         }, 200);
-        setColor1("RED")
+
     }
     const handleForward = () => {
         sendData("Forward", 1)
@@ -56,9 +53,6 @@ function Inverter({ startup, stop, forward, reverse, setpoint, speed }) {
             sendData("Forward", 0)
             toast("Completed")
         }, 200);
-        setColor2("GREEN")
-        setColor4("TRUE")
-        setColor5("FALSE")
     }
     const handleReverse = () => {
         sendData("Reverse", 1)
@@ -66,9 +60,6 @@ function Inverter({ startup, stop, forward, reverse, setpoint, speed }) {
             sendData("Reverse", 0)
             toast("Completed")
         }, 200);
-        setColor3("GREEN")
-        setColor5("TRUE")
-        setColor4("FALSE")
     }
     const handleReset = () => {
         sendData("Reset", 1)
@@ -86,7 +77,7 @@ function Inverter({ startup, stop, forward, reverse, setpoint, speed }) {
             <div className={css('status')}>
                 <h2>Motor Status</h2>
                 <div className={css('button1')}>
-                    <Indicator name="" status={"TRUE"} color={Color1} />
+                    <Indicator name="" status={"TRUE"} color={ statusMotor.value === "TRUE" ? "GREEN" : "RED"} />
                 </div>
                 <div className={css('stbutton')}>
                     <button className={css('buttonHandle')} onClick={handleStart}>Start</button>
@@ -100,8 +91,8 @@ function Inverter({ startup, stop, forward, reverse, setpoint, speed }) {
             <div className={css('direction')}>
                 <h2>Motor Direction</h2>
                 <div className={css('button2')}>
-                    <Indicator name="" status={Color4} color={Color2} />
-                    <Indicator name="" status={Color5} color={Color3} />
+                    <Indicator name="" status={ direction.value === "TRUE" ? "FALSE" : "TRUE"} color={"GREEN"} />
+                    <Indicator name="" status={ direction.value === "TRUE" ? "TRUE" : "FALSE"} color={"GREEN"} />
                 </div>
                 <div className={css('stbutton')}>
                     <button className={css('buttonHandle')} onClick={handleForward}>Forward</button>
