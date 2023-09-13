@@ -55,8 +55,6 @@ function Monitor() {
         toggle8: { value: 'FALSE' },
         Position_PV: { value: '__' },
         Speed_PV: { value: '__' },
-        Position_SP: { value: '__' },
-        Speed_SP: { value: '__' },
         VFD_Speed_PV: { value: '__' },
         VFD_Speed_SP:{ value: '__' },
     })
@@ -127,8 +125,6 @@ function Monitor() {
                         toggle8={data.toggle8}
                         Position_PV={data.Position_PV}
                         Speed_PV={data.Speed_PV}
-                        Position_SP={data.Position_SP}
-                        Speed_SP={data.Speed_SP}
                     />
 
                 </div>

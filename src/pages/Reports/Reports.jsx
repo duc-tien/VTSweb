@@ -83,10 +83,12 @@ function Reports() {
                     <option value="ledYellow">ledYellow</option>
                     <option value="ledRed">ledRed</option>
                     <option value="DCMotor">DCMotor</option>
-                    <option value="start">start</option>
-                    <option value="stop">stop</option>
-                    <option value="VFD_Speed_PV">VFD_Speed_PV</option>
-                    <option value="VFD_Speed_PV">VFD_Speed_SP</option>
+                    <option value="start">DCMotor.Start</option>
+                    <option value="stop">DCMotor.Stop</option>
+                    <option value="Position_PV">PLC.CurrentPosition</option>
+                    <option value="Speed_PV">PLC.CurrentSpeed</option>
+                    <option value="VFD_Speed_PV">Inverter.Speed_PV</option>
+                    <option value="VFD_Speed_SP">Inverter.Speed_SP</option>
                     <option value="O5D150">O5D150</option>
                     <option value="RVP510">RVP510</option>
                     <option value="UGT524">UGT524</option>
