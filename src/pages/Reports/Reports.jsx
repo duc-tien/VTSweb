@@ -31,7 +31,7 @@ function Reports() {
             const newData = HandleData(res.data,name_api)
             const Domain = changeDomain(name_api)
             setExData(newData.data)
-            setTData(res.data)
+            newData.Tagname != "Micro820_Analog_1" ? setTData( res.data ) : setTData(newData.data)
             setTagName(newData.Tagname)
             setDomain(Domain)
         })
@@ -91,7 +91,9 @@ function Reports() {
                     <option value="RedLightB">RedLightB</option>
                     <option value="YellowLightB">YellowLightB</option>
                     <option value="GreenLightB">GreenLightB</option>
-                    <option value="Speed_PV">Inverter_Speed_PV</option>
+                    <option value="Inverter_Speed_PV">Inverter_Speed_PV</option>
+                    <option value="Micro820_Analog_1">Curren Voltage</option>
+                    
                 </select>
                 <>
                     <label htmlFor="startDay">Start Day</label>

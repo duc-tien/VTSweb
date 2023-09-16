@@ -55,7 +55,6 @@ function Monitor() {
       hubConnection.connection.off("TagChanged");
     };
   }, [hubConnection.connection]);
-  console.log(data);
   const dataSpeed = (value) => {
     setSpeed(value);
   };
@@ -115,121 +114,9 @@ function Monitor() {
         v: Number(data),
       },
     ];
-    console.log(JSON.stringify(payload));
     hubConnection.connection.send("SEND", JSON.stringify(payload));
   };
 
-  // const sendData = (type) => {
-  //   let obj;
-  //   let obj2;
-  //   switch (type) {
-  //     case "speed": {
-  //       obj = [
-  //         {
-  //           id: "Channel1.Device1.Inverter_Speed_SP",
-  //           v: Number(speed),
-  //         },
-  //       ];
-  //       break;
-  //     }
-  //     case "StartInverter": {
-  //       obj = [
-  //         {
-  //           id: "Channel1.Device1.Inverter_Start",
-  //           v: 1,
-  //         },
-  //       ];
-  //       obj2 = [
-  //         {
-  //           id: "Channel1.Device1.Inverter_Start",
-  //           v: 0,
-  //         },
-  //       ];
-  //       break;
-  //     }
-  //     case "StopInverter": {
-  //       obj = [
-  //         {
-  //           id: "Channel1.Device1.Inverter_Stop",
-  //           v: 1,
-  //         },
-  //       ];
-  //       obj2 = [
-  //         {
-  //           id: "Channel1.Device1.Inverter_Stop",
-  //           v: 0,
-  //         },
-  //       ];
-  //       break;
-  //     }
-  //     case "Reverse": {
-  //       obj = [
-  //         {
-  //           id: "Channel1.Device1.Inverter_Rev",
-  //           v: 1,
-  //         },
-  //       ];
-  //       obj2 = [
-  //         {
-  //           id: "Channel1.Device1.Inverter_Rev",
-  //           v: 0,
-  //         },
-  //       ];
-  //       break;
-  //     }
-  //     case "Forward": {
-  //       obj = [
-  //         {
-  //           id: "Channel1.Device1.Inverter_Fwd",
-  //           v: 1,
-  //         },
-  //       ];
-  //       obj2 = [
-  //         {
-  //           id: "Channel1.Device1.Inverter_Fwd",
-  //           v: 0,
-  //         },
-  //       ];
-  //       setDrt(false);
-  //       break;
-  //     }
-  //     case "StartTraffic": {
-  //       obj = [
-  //         {
-  //           id: "Channel1.Device1.Traffic_Start",
-  //           v: 1,
-  //         },
-  //       ];
-  //       obj2 = [
-  //         {
-  //           id: "Channel1.Device1.Traffic_Start",
-  //           v: 0,
-  //         },
-  //       ];
-  //       break;
-  //     }
-  //     case "StopTraffic": {
-  //       obj = [
-  //         {
-  //           id: "Channel1.Device1.Traffic_Stop",
-  //           v: 1,
-  //         },
-  //       ];
-  //       obj2 = [
-  //         {
-  //           id: "Channel1.Device1.Traffic_Stop",
-  //           v: 0,
-  //         },
-  //       ];
-  //       break;
-  //     }
-  //     default:
-  //       console.log("no data");
-  //   }
-  //   console.log(JSON.stringify(obj));
-  //   hubConnection.connection.send("SEND", JSON.stringify(obj));
-  //   hubConnection.connection.send("SEND", JSON.stringify(obj2));
-  // };
 
   return (
     <>
@@ -440,7 +327,7 @@ function Monitor() {
                 <h2>Current Voltage</h2>
                 <span className={css("value__current")}>
                   {data["Micro820_Analog_1"]
-                    ? ((data["Micro820_Analog_1"].value * 10) / 4095).toFixed(2)
+                    ? ((data["Micro820_Analog_1"].value * 10) / 4013).toFixed(2)
                     : "???"}
                   <span style={{ position: "relative", left: "24px" }}>
                     (V)
