@@ -1,5 +1,6 @@
 import Styles from "./Reports.module.scss"
 import HeaderItem from "../../components/HeaderItem/HeaderItem"
+import { HandleData, changeDomain } from "../../store/HandleData/HandleData"
 import classNames from "classnames/bind"
 import fetchProducts from "../../services/api/Api"
 import { useState } from "react"
@@ -13,6 +14,7 @@ function Reports() {
     const [ExData, setExData] = useState([])
     const [TData, setTData] = useState([])
     const [TagName, setTagName] = useState([])
+    const [Domain, setDomain] = useState({})
 
     const handleExportExcel = () => {
         const time1_e = document.getElementById('startDay').value
@@ -26,35 +28,12 @@ function Reports() {
         const name_api = document.getElementById('tagName').value
         const response = fetchProducts(`${name_api}/${time1_api}/${time2_api}`)
         response.then(res => {
-            const changeData =  res.data.map((change) =>{
-                if (change.value === 'TRUE'){
-                    return(
-                        {value : 1,
-                          timestamp: change.timestamp.slice(0,19)
-                        }
-                    )}
-                    else if (change.value === 'FALSE') {
-                        return(
-                            {
-                                value : 0,
-                                timestamp: change.timestamp.slice(0,19)
-                            }
-                        )
-                    }
-                    else {
-                        return(
-                            {
-                                value : change.value,
-                                timestamp: change.timestamp.slice(0,19) 
-                            }
-                        )
-                    }
-                
-            })
-            setExData(changeData)
+            const newData = HandleData(res.data,name_api)
+            const Domain = changeDomain(name_api)
+            setExData(newData.data)
             setTData(res.data)
-            setTagName(name_api)
-         //   console.log(changeData)
+            setTagName(newData.Tagname)
+            setDomain(Domain)
         })
     }
     
@@ -80,6 +59,22 @@ function Reports() {
                     <option value="start">DCMotor.Start</option>
                     <option value="stop">DCMotor.Stop</option>
                     <option value="" disabled>PLC Kit</option>
+                    <option value="led1">I0.0</option>
+                    <option value="led2">I0.1</option>
+                    <option value="led3">I0.2</option>
+                    <option value="led4">I0.3</option>
+                    <option value="led5">I0.4</option>
+                    <option value="led6">I0.5</option>
+                    <option value="led7">I0.6</option>
+                    <option value="led8">I0.7</option>
+                    <option value="toggle1">Q0.0</option>
+                    <option value="toggle2">Q0.1</option>
+                    <option value="toggle3">Q0.2</option>
+                    <option value="toggle4">Q0.3</option>
+                    <option value="toggle5">Q0.4</option>
+                    <option value="toggle6">Q0.5</option>
+                    <option value="toggle7">Q0.6</option>
+                    <option value="toggle8">Q0.7</option>
                     <option value="Position_PV">PLC.CurrentPosition</option>
                     <option value="Speed_PV">PLC.CurrentSpeed</option>
                     <option value="" disabled>Inverter Kit</option>
@@ -111,58 +106,15 @@ function Reports() {
                 <button onClick={handleExportExcel}>Export Excel</button>
 
             </div>
-            {ExData != [] ? (
-                TagName === "countRB3100" || TagName === "angleRB3100" || TagName === "distanceUGT524" || TagName === "VFD_Speed_SP" || TagName === "VFD_Speed_PV"? 
-                (<LineChart width={1510} height={315} data={ExData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="timestamp"
-                        tick={{ fontSize: 13, fill: '#333', textAnchor: 'middle' }} />
-                    <YAxis domain={[0,550]}/>
-                    <Tooltip />
-                    <Legend />
-                    <Line type="stepAfter" dataKey="value" name={false} stroke="#000000" dot={false} legendType="none" />
-                </LineChart>)
-                :
-                ( 
-                    TagName === "tempTW2000" || TagName === "O5D150" || TagName === "Position_PV" || TagName === "Speed_PV" ? 
-                    (<LineChart width={1510} height={315} data={ExData}>
+            <LineChart width={1510} height={315} data={ExData}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="timestamp"
                             tick={{ fontSize: 13, fill: '#333', textAnchor: 'middle' }} />
-                        <YAxis  domain={TagName === "Position_PV" || TagName === "Speed_PV" ?  [-100,100] : [0,ExData.value]}/>
+                        <YAxis  domain={Domain.value} ticks={Domain.chart === "FALSE" ? [] : [false, true]}/>
                         <Tooltip />
                         <Legend />
                         <Line type="stepAfter" dataKey="value" name={false} stroke="#000000" dot={false} legendType="none" />
-                    </LineChart>)
-                    :
-                    (
-                    TagName === "RVP510" || TagName === "UGT524" ? 
-                    (<LineChart width={1510} height={315} data={ExData}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="timestamp"
-                            tick={{ fontSize: 13, fill: '#333', textAnchor: 'middle' }} />
-                        <YAxis domain={[0, 1100]}/>
-                        <Tooltip />
-                        <Legend />
-                        <Line type="stepAfter" dataKey="value" name={false} stroke="#000000" dot={false} legendType="none" />
-                    </LineChart>)
-                    :
-                    (<LineChart width={1510} height={315} data={ExData}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="timestamp"
-                            tick={{ fontSize: 13, fill: '#333', textAnchor: 'middle' }} />
-                        <YAxis domain={[true, false]} ticks={[false, true]}/>
-                        <Tooltip />
-                        <Legend />
-                        <Line type="stepAfter" dataKey="value" name={false} stroke="#000000" dot={false} legendType="none" />
-                    </LineChart>)
-                    )
-                )
-            ) 
-            : 
-            (
-                <div> <span>loading</span></div>
-            )}
+            </LineChart>
             <div className={css("heading")}>
                 <span >TagName</span>
                 <span >Value</span>
