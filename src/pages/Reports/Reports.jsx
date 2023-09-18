@@ -80,6 +80,9 @@ function Reports() {
                     <option value="" disabled>Inverter Kit</option>
                     <option value="VFD_Speed_SP">Inverter.ReadSetPoint</option>
                     <option value="VFD_Speed_PV">Inverter.Speed</option>
+                    <option value="VFD_Run">Inverter.MotorStatus</option>
+                    <option value="VFD_Status_Forward">Inverter.Forward</option>
+                    <option value="VFD_Status_Reverse">Inverter.Reverse</option>
                     <option value="O5D150">O5D150</option>
                     <option value="RVP510">RVP510</option>
                     <option value="UGT524">UGT524</option>

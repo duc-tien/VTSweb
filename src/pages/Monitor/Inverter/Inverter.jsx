@@ -9,7 +9,7 @@ import { useState } from "react"
 
 const css = classNames.bind(Styles)
 
-function Inverter({ statusMotor, direction, setpoint, speed }) {
+function Inverter({ statusMotor, forward, reverse, setpoint, speed }) {
 
     const handInput = () => {
         const dataInput = document.getElementById('changeData')
@@ -91,8 +91,8 @@ function Inverter({ statusMotor, direction, setpoint, speed }) {
             <div className={css('direction')}>
                 <h2>Motor Direction</h2>
                 <div className={css('button2')}>
-                    <Indicator name="" status={ direction.value === "TRUE" ? "FALSE" : "TRUE"} color={"GREEN"} />
-                    <Indicator name="" status={ direction.value === "TRUE" ? "TRUE" : "FALSE"} color={"GREEN"} />
+                    <Indicator name="" status={forward.value} color={"GREEN"} />
+                    <Indicator name="" status={reverse.value} color={"GREEN"} />
                 </div>
                 <div className={css('stbutton')}>
                     <button className={css('buttonHandle')} onClick={handleForward}>Forward</button>

@@ -53,7 +53,8 @@ function Monitor() {
         Speed_PV: { value: '__' },
         VFD_Speed_PV: { value: '__' },
         VFD_Speed_SP:{ value: '__' },
-        VFD_Direction_Status:{ value: 'FALSE' },
+        VFD_Status_Forward:{ value: 'FALSE' },
+        VFD_Status_Reverse:{ value: 'FALSE' },
         VFD_Run:{ value: 'FALSE' },
     })
 
@@ -142,7 +143,8 @@ function Monitor() {
 
                     <Inverter
                         statusMotor={data.VFD_Run}
-                        direction={data.VFD_Direction_Status}
+                        forward={data.VFD_Status_Forward}
+                        reverse={data.VFD_Status_Reverse}
                         setpoint={data.VFD_Speed_SP}
                         speed={data.VFD_Speed_PV}
                     />

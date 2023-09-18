@@ -63,7 +63,7 @@ export function changeDomain(name) {
         case "UGT524":
             return ({ value: [0, 1100], chart: "FALSE" });
         case "Inverter_Speed_PV":
-            return ({ value: [0, 100], chart: "FALSE" });
+            return ({ value: [0, 25], chart: "FALSE" });
         case "Micro820_Analog_1":
             return ({ value: [0, 10], chart: "FALSE" });
         default:
