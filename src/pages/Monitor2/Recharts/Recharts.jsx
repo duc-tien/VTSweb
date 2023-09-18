@@ -40,7 +40,7 @@ function Recharts() {
         }
         setData((prev) => {
           const listData = [...prev, obj];
-          if (listData.length > 120) {
+          if (listData.length > 60) {
             listData.shift();
           }
           return listData;

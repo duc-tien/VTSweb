@@ -37,7 +37,7 @@ function Monitor() {
       const obj = JSON.parse(res);
       obj.value === "TRUE" ? (obj.value = true) : null;
       obj.value === "FALSE" ? (obj.value = false) : null;
-      if (obj.name === "Channel1.Device1.Inverter_Speed_PV") {
+      if (obj.name === "Inverter_Speed_PV") {
         if (obj.value > 0.05) {
           setLedSttOn(true);
           setLedSttOff(false);
@@ -172,9 +172,7 @@ function Monitor() {
                 <h3>Direction</h3>
                 <div>
                   <div
-                    onClick={(e) => {
-                      setDrt(true);
-                    }}
+                    
                     onMouseDown={() => {
                       sendData("Inverter_Rev", 1);
                     }}
@@ -189,16 +187,14 @@ function Monitor() {
                     />
                   </div>
                   <div
-                    onClick={(e) => {
-                      setDrt(false);
-                    }}
+                    
                     onMouseDown={() => {
                       sendData("Inverter_Fwd", 1);
                     }}
                     onMouseUp={() => {
                       sendData("Inverter_Fwd", 0);
                     }}
-                    className={css("wrap-icon", { "current-direction": !drt })}
+                    className={css("wrap-icon", { "current-direction": drt })}
                   >
                     <FontAwesomeIcon
                       className={css("direction-icon")}
