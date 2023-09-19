@@ -43,6 +43,9 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        span{
+            font-size: 1vw;
+        }
     }
     .wait{
         border-bottom: 0.5px solid black;
