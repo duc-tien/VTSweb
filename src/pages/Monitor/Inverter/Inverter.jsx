@@ -84,7 +84,7 @@ function Inverter({ statusMotor, forward, reverse, setpoint, speed }) {
                     <button className={css('buttonHandle')} onClick={handleStop}>Stop</button>
                 </div>
                 <div>
-                    <button className={css('buttonHandleReset')} onClick={handleReset}>Reset</button>
+                    {/* <button className={css('buttonHandleReset')} onClick={handleReset}>Reset</button> */}
                 </div>
             </div>
 
