@@ -1,78 +1,120 @@
-.plcKit{
-    position:relative;
+.plcKit {
+    position: relative;
     width: 46vw;
     height: 50vh;
     box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 0.2), 0px 4px 5px 0px rgb(0 0 0 / 0.14), 0px 1px 10px 0px rgb(0 0 0 / 0.12);
     border-radius: 10px;
-    .tittle{
+
+    .tittle {
         font-size: 2vw;
         text-align: center;
     }
-    span, button{
+
+    span,
+    button {
         font-size: 1vw;
     }
-    input{
+
+    input {
         width: 4vw;
         height: 3vh;
         font-size: 1.2vw;
     }
-    .buttonOut{
+
+    .buttonOut {
         display: flex;
         justify-content: space-around;
-        margin-left: 5px;
+        margin-left: 0.3vw;
+        margin-top: 2vh;
     }
-    .buttonIn{
+
+    .buttonIn {
         display: flex;
         justify-content: space-around;
+        margin-top: 2vh;
     }
-    .pic{
+
+    .pic {
         width: 40vw;
         height: 15vh;
         margin-left: 3vw;
     }
-    .item{
+
+    .item {
         display: flex;
         justify-content: space-evenly;
-     }
-     .setPoint{
+    }
+
+    .setPoint {
         width: 14vw;
-        height: 15vh;
+        height: 20vh;
+        margin-top: 5vh;
         box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 0.2), 0px 4px 5px 0px rgb(0 0 0 / 0.14), 0px 1px 10px 0px rgb(0 0 0 / 0.12);
         border-radius: 10px;
         text-align: center;
+
+        h1 {
+            font-size: 1.2vw;
+            margin-top: 1vh;
+        }
     }
-    .current{
+
+    .setting {
         width: 14vw;
-        height: 15vh;
+        height: 20vh;
+        margin-top: 5vh;
         box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 0.2), 0px 4px 5px 0px rgb(0 0 0 / 0.14), 0px 1px 10px 0px rgb(0 0 0 / 0.12);
         border-radius: 10px;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
-    .wait{
+
+    .current {
+        width: 14vw;
+        height: 20vh;
+        margin-top: 5vh;
+        box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 0.2), 0px 4px 5px 0px rgb(0 0 0 / 0.14), 0px 1px 10px 0px rgb(0 0 0 / 0.12);
+        border-radius: 10px;
+        text-align: center;
+
+        h1 {
+            font-size: 1.2vw;
+            margin-top: 1vh;
+        }
+    }
+
+    .wait {
         border-bottom: 0.5px solid black;
         width: 5vw;
         font-size: 18px;
         font-weight: 600;
     }
-    .buttonInput{
+
+    .buttonInput {
         height: 2.5vh;
         width: 2vw;
         margin-left: 0.5vw;
         background-color: #FF932F;
         border-radius: 0.5vw;
-        &:hover{
+
+        &:hover {
             cursor: pointer;
             background-color: rgb(255, 155, 0, 0.6)
         }
     }
-    .buttonHandle{
+
+    .buttonHandle {
         height: 3vh;
         width: 5vw;
         margin-top: 1vh;
         margin-left: 0.5vw;
         background-color: #FF932F;
         border-radius: 0.5vw;
-        &:hover{
+
+        &:hover {
             cursor: pointer;
             background-color: rgb(255, 155, 0, 0.6)
         }
