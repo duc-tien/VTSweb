@@ -19,11 +19,13 @@
     .buttonOut{
         display: flex;
         justify-content: space-around;
-        margin-left: 5px;
+        margin-left: 0.3vw;
+        margin-top: 2vh;
     }
     .buttonIn{
         display: flex;
         justify-content: space-around;
+        margin-top: 2vh;
     }
     .pic{
         width: 40vw;
@@ -36,17 +38,39 @@
      }
      .setPoint{
         width: 14vw;
-        height: 15vh;
+        height: 20vh;
+        margin-top: 5vh;
         box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 0.2), 0px 4px 5px 0px rgb(0 0 0 / 0.14), 0px 1px 10px 0px rgb(0 0 0 / 0.12);
         border-radius: 10px;
         text-align: center;
+        h1{
+            font-size: 1.5vw;
+            margin-top: 1vh;
+        }
+    }
+    .setting{
+        width: 14vw;
+        height: 20vh;
+        margin-top: 5vh;
+        box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 0.2), 0px 4px 5px 0px rgb(0 0 0 / 0.14), 0px 1px 10px 0px rgb(0 0 0 / 0.12);
+        border-radius: 10px;
+        text-align: center;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
     }
     .current{
         width: 14vw;
-        height: 15vh;
+        height: 20vh;
+        margin-top: 5vh;
         box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 0.2), 0px 4px 5px 0px rgb(0 0 0 / 0.14), 0px 1px 10px 0px rgb(0 0 0 / 0.12);
         border-radius: 10px;
         text-align: center;
+        h1{
+            font-size: 1.5vw;
+            margin-top: 1vh;
+        }
     }
     .wait{
         border-bottom: 0.5px solid black;

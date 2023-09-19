@@ -93,16 +93,16 @@ function PLCKit({ led1, led2, led3, led4, led5, led6, led7, led8,
                 <Indicator name="Q0.7" status={led8.value} color={"RED"} />
             </div>
 
-            <img src={PLC_Kit} alt="PLC" className={css('pic')} />
+            {/* <img src={PLC_Kit} alt="PLC" className={css('pic')} /> */}
 
             <div className={css('item')}>
-                <div className={css('setPoint')}>
+                <div className={css('setting')}>
                     <button onClick={handle1} className={css('buttonHandle')}>Start</button> <br />
                     <button onClick={handle2} className={css('buttonHandle')}>Set Home</button><br />
                     <button onClick={handle4} className={css('buttonHandle')}>Auto Mode</button>
                 </div>
                 <div className={css('setPoint')}>
-                    <span>SET POINT</span> <br />
+                    <h1>SET POINT</h1> <br />
                     <span>Speed</span> <br />
                     <input id="changeData1" type="text" className={css('wait')} />
                     <button onClick={handInput1} className={css('buttonInput')}>OK</button> <br />
@@ -111,7 +111,7 @@ function PLCKit({ led1, led2, led3, led4, led5, led6, led7, led8,
                     <button onClick={handInput2} className={css('buttonInput')}>OK</button>
                 </div>
                 <div className={css('current')}>
-                    <span>CURRENT</span><br />
+                    <h1>CURRENT</h1><br />
                     <span>Speed</span><br />
                     <span className={css('wait')}> {Speed_PV.value}</span><br />
                     <span>Position</span><br />
