@@ -28,9 +28,6 @@ function Monitor() {
   const [ledSttOff, setLedSttOff] = useState();
   const [drt, setDrt] = useState(true);
 
-  const inputRef = useRef();
-  let enable = useRef(true);
-
   useEffect(() => {
     hubConnection.start();
     hubConnection.connection.on("TagChanged", (res) => {
@@ -116,7 +113,9 @@ function Monitor() {
     ];
     hubConnection.connection.send("SEND", JSON.stringify(payload));
   };
-
+  const handleDirection = (direction) => {
+    setDrt(direction);
+  };
 
   return (
     <>
@@ -141,9 +140,6 @@ function Monitor() {
             <h1>Inverter Motor</h1>
             <div className={css("btn")}>
               <button
-                // onClick={() => {
-                //   sendData("StartInverter");
-                // }}
                 onMouseDown={() => {
                   sendData("Inverter_Start", 1);
                 }}
@@ -154,9 +150,6 @@ function Monitor() {
                 START
               </button>
               <button
-                // onClick={() => {
-                //   sendData("StopInverter");
-                // }}
                 onMouseDown={() => {
                   sendData("Inverter_Stop", 1);
                 }}
@@ -172,42 +165,51 @@ function Monitor() {
                 <h3>Direction</h3>
                 <div>
                   <div
-                    
-                    onMouseDown={() => {
-                      sendData("Inverter_Rev", 1);
-                    }}
-                    onMouseUp={() => {
-                      sendData("Inverter_Rev", 0);
-                    }}
                     className={css("wrap-icon", { "current-direction": drt })}
                   >
-                    <FontAwesomeIcon
-                      className={css("direction-icon")}
-                      icon={faArrowRotateRight}
-                    />
+                    <span
+                      onClick={() => {
+                        handleDirection(true);
+                      }}
+                      onMouseDown={() => {
+                        sendData("Inverter_Rev", 1);
+                      }}
+                      onMouseUp={() => {
+                        sendData("Inverter_Rev", 0);
+                      }}
+                    >
+                      FWD
+                    </span>
                   </div>
                   <div
-                    
-                    onMouseDown={() => {
-                      sendData("Inverter_Fwd", 1);
-                    }}
-                    onMouseUp={() => {
-                      sendData("Inverter_Fwd", 0);
-                    }}
-                    className={css("wrap-icon", { "current-direction": drt })}
+                    className={css("wrap-icon", { "current-direction": !drt })}
                   >
-                    <FontAwesomeIcon
-                      className={css("direction-icon")}
-                      icon={faArrowRotateLeft}
-                    />
+                    <span
+                      onClick={() => {
+                        handleDirection(false);
+                      }}
+                      onMouseDown={() => {
+                        sendData("Inverter_Fwd", 1);
+                      }}
+                      onMouseUp={() => {
+                        sendData("Inverter_Fwd", 0);
+                      }}
+                    >
+                      REV
+                    </span>
                   </div>
                 </div>
               </div>
               <div className={css("info__status")}>
                 <h3>Status</h3>
                 <div>
-                  <div className={css("stt-on", { ledOn: ledSttOn })}></div>
-                  <div className={css("stt-off", { ledOff: ledSttOff })}></div>
+                  <div
+                    className={css(
+                      "stt-off",
+                      { ledOff: ledSttOff },
+                      { ledOn: ledSttOn }
+                    )}
+                  ></div>
                 </div>
               </div>
               <div className={css("info__param")}>
