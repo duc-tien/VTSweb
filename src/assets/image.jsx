@@ -1,7 +1,6 @@
 export const TrafficLight = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
     width="403"
     height="270"
     viewBox="0 0 403 270"
@@ -76,26 +75,12 @@ export const TrafficLight = () => (
     <circle cx="252" cy="176" r="8" fill="#9D9D9D" />
     <circle cx="252" cy="198" r="8" fill="#9D9D9D" />
     <circle cx="252" cy="220" r="8" fill="#9D9D9D" />
-    <defs>
-      <pattern
-        id="pattern0"
-        patternContentUnits="objectBoundingBox"
-        width="1"
-        height="1"
-      >
-        <use
-          xlink:href="#image0_121_30"
-          transform="matrix(0.00195312 0 0 0.00291522 0 -0.0699255)"
-        />
-      </pattern>
-    </defs>
   </svg>
 );
 
 export const AredBgreen = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
     width="403"
     height="270"
     viewBox="0 0 403 270"
@@ -174,25 +159,11 @@ export const AredBgreen = () => (
     <circle cx="252" cy="176" r="8" fill="#ff1414" />
     <circle cx="252" cy="198" r="8" fill="#9D9D9D" />
     <circle cx="252" cy="220" r="8" fill="#9D9D9D" />
-    <defs>
-      <pattern
-        id="pattern0"
-        patternContentUnits="objectBoundingBox"
-        width="1"
-        height="1"
-      >
-        <use
-          xlink:href="#image0_121_30"
-          transform="matrix(0.00195312 0 0 0.00291522 0 -0.0699255)"
-        />
-      </pattern>
-    </defs>
   </svg>
 );
 export const AredByellow = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
     width="403"
     height="270"
     viewBox="0 0 403 270"
@@ -271,25 +242,11 @@ export const AredByellow = () => (
     <circle cx="252" cy="176" r="8" fill="#ff1414" />
     <circle cx="252" cy="198" r="8" fill="#9D9D9D" />
     <circle cx="252" cy="220" r="8" fill="#9D9D9D" />
-    <defs>
-      <pattern
-        id="pattern0"
-        patternContentUnits="objectBoundingBox"
-        width="1"
-        height="1"
-      >
-        <use
-          xlink:href="#image0_121_30"
-          transform="matrix(0.00195312 0 0 0.00291522 0 -0.0699255)"
-        />
-      </pattern>
-    </defs>
   </svg>
 );
 export const AgreenBred = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
     width="403"
     height="270"
     viewBox="0 0 403 270"
@@ -368,25 +325,11 @@ export const AgreenBred = () => (
     <circle cx="252" cy="176" r="8" fill="#9D9D9D" />
     <circle cx="252" cy="198" r="8" fill="#9D9D9D" />
     <circle cx="252" cy="220" r="8" fill="#00e025" />
-    <defs>
-      <pattern
-        id="pattern0"
-        patternContentUnits="objectBoundingBox"
-        width="1"
-        height="1"
-      >
-        <use
-          xlink:href="#image0_121_30"
-          transform="matrix(0.00195312 0 0 0.00291522 0 -0.0699255)"
-        />
-      </pattern>
-    </defs>
   </svg>
 );
 export const AyellowBred = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
     width="403"
     height="270"
     viewBox="0 0 403 270"
@@ -465,18 +408,5 @@ export const AyellowBred = () => (
     <circle cx="252" cy="176" r="8" fill="#9D9D9D" />
     <circle cx="252" cy="198" r="8" fill="#cbea00" />
     <circle cx="252" cy="220" r="8" fill="#9D9D9D" />
-    <defs>
-      <pattern
-        id="pattern0"
-        patternContentUnits="objectBoundingBox"
-        width="1"
-        height="1"
-      >
-        <use
-          xlink:href="#image0_121_30"
-          transform="matrix(0.00195312 0 0 0.00291522 0 -0.0699255)"
-        />
-      </pattern>
-    </defs>
   </svg>
 );

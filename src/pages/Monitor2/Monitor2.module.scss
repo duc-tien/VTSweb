@@ -345,14 +345,16 @@
         }
       }
       .current-speed {
-        margin-top: 0;
+        display: flex;
+        align-items: center;
+        margin-top: 24px;
         .current-value {
           display: inline-block;
+          text-align: center;
           border-bottom: 1px solid #333;
           width: 54px;
-          height: 40px;
-          position: relative;
-          top: 4px;
+          height: 24px;
+          line-height: 24px;
           margin-right: 6px;
           margin-left: 2px;
         }
