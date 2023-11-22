@@ -1,8 +1,6 @@
-import Status from "@src/components/Vali2/Status";
-import Switch from "@src/components/Vali2/Switch";
-import Input from "@src/components/Vali2/Input";
-import Recharts from "./Recharts/Recharts";
-
+import Recharts from "../../utils/Recharts/Recharts";
+import Status from "@src/components/Status2";
+import Input from "@src/components/Input";
 import style from "./Monitor2.module.scss";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,108 +13,39 @@ import { useEffect, useState, useRef } from "react";
 import HeaderItem from "../../components/HeaderItem/HeaderItem";
 import hubConnection from "../../services/signalR/hubConnection";
 import { Link } from "react-router-dom";
+import {
+  TrafficLight,
+  AredBgreen,
+  AredByellow,
+  AgreenBred,
+  AyellowBred,
+} from "../../assets";
 
 const css = classNames.bind(style);
 
 function Monitor() {
-  const [data, setData] = useState({});
-  const [speed, setSpeed] = useState();
-  const [timeRed, setTimeRed] = useState();
-  const [timeYellow, setTimeYellow] = useState();
-  const [timeGreen, setTimeGreen] = useState();
-  const [ledSttOn, setLedSttOn] = useState();
-  const [ledSttOff, setLedSttOff] = useState();
-  const [drt, setDrt] = useState(true);
-
-  useEffect(() => {
-    hubConnection.start();
-    hubConnection.connection.on("TagChanged", (res) => {
-      const obj = JSON.parse(res);
-      obj.value === "TRUE" ? (obj.value = true) : null;
-      obj.value === "FALSE" ? (obj.value = false) : null;
-      if (obj.name === "Inverter_Speed_PV") {
-        if (obj.value > 0.05) {
-          setLedSttOn(true);
-          setLedSttOff(false);
-        } else {
-          setLedSttOn(false);
-          setLedSttOff(true);
-        }
-      }
-      setData((prevData) => {
-        const updateData = { ...prevData, [obj.name]: obj };
-        return updateData;
-      });
-    });
-    return () => {
-      hubConnection.connection.off("TagChanged");
-    };
-  }, [hubConnection.connection]);
-  const dataSpeed = (value) => {
-    setSpeed(value);
-  };
-  const dataRedTime = (value) => {
-    setTimeRed(value);
-  };
-  const dataYellowTime = (value) => {
-    setTimeYellow(value);
-  };
-  const dataGreenTime = (value) => {
-    setTimeGreen(value);
-  };
-
-  const sendTrafficTime = () => {
-    let yt = [
-      {
-        id: "Channel1.Device1.Traffic_YellowTime",
-        v: Number(timeYellow),
-      },
-    ];
-    let gt = [
-      {
-        id: "Channel1.Device1.Traffic_GreenTime",
-        v: Number(timeYellow),
-      },
-    ];
-    let rt = [
-      {
-        id: "Channel1.Device1.Traffic_RedTime",
-        v: Number(timeYellow),
-      },
-    ];
-    let cf = [
-      {
-        id: "Channel1.Device1.Traffic_Confirm",
-        v: 1,
-      },
-    ];
-    let cf2 = [
-      {
-        id: "Channel1.Device1.Traffic_Confirm",
-        v: 0,
-      },
-    ];
-
-    hubConnection.connection.send("SEND", JSON.stringify(yt));
-    hubConnection.connection.send("SEND", JSON.stringify(rt));
-    hubConnection.connection.send("SEND", JSON.stringify(gt));
-    hubConnection.connection.send("SEND", JSON.stringify(cf));
-    hubConnection.connection.send("SEND", JSON.stringify(cf2));
-  };
-
-  const sendData = (type, data) => {
-    const payload = [
-      {
-        id: `Channel1.Device1.${type}`,
-        v: Number(data),
-      },
-    ];
-    hubConnection.connection.send("SEND", JSON.stringify(payload));
-  };
-  const handleDirection = (direction) => {
-    setDrt(direction);
-  };
-
+  const [data, setData] = useState({
+    Micro850_input_1: { value: false },
+    Micro850_input_2: { value: false },
+    Micro850_input_3: { value: false },
+    Micro850_input_4: { value: false },
+    Micro850_input_5: { value: false },
+    Micro850_input_6: { value: false },
+    Micro850_input_7: { value: false },
+    Micro850_input_8: { value: false },
+    RedLightA: { value: false },
+    GreenLightA: { value: false },
+    YellowLightA: { value: false },
+    RedLightB: { value: false },
+    GreenLightB: { value: false },
+    YellowLightB: { value: false },
+    Micro820_input_1: { value: false },
+    Micro820_input_2: { value: false },
+    Micro820_input_3: { value: false },
+    Micro820_input_4: { value: false },
+    Micro820_input_5: { value: false },
+    Micro820_input_6: { value: false },
+  });
   return (
     <>
       <div>
@@ -135,325 +64,144 @@ function Monitor() {
         </div>
       </div>
       <div className={css("body")}>
-        <div className={css("body__left")}>
-          <div className={css("inverter")}>
-            <h1>Inverter Motor</h1>
-            <div className={css("btn")}>
-              <button
-                onMouseDown={() => {
-                  sendData("Inverter_Start", 1);
-                }}
-                onMouseUp={() => {
-                  sendData("Inverter_Start", 0);
-                }}
-              >
-                START
-              </button>
-              <button
-                onMouseDown={() => {
-                  sendData("Inverter_Stop", 1);
-                }}
-                onMouseUp={() => {
-                  sendData("Inverter_Stop", 0);
-                }}
-              >
-                STOP
-              </button>
+        <div className={css("body-left")}>
+          <div className={css("micro850")}>
+            <h2>Panel Micro 850</h2>
+            <div className={css("input-850")}>
+              <Status name="I0.0" />
+              <Status name="I0.1" />
+              <Status name="I0.2" />
+              <Status name="I0.3" />
+              <Status name="I0.4" />
+              <Status name="I0.5" />
             </div>
-            <div className={css("info")}>
-              <div className={css("info__direction")}>
-                <h3>Direction</h3>
-                <div>
-                  <div
-                    className={css("wrap-icon", { "current-direction": drt })}
-                  >
-                    <span
-                      onClick={() => {
-                        handleDirection(true);
-                      }}
-                      onMouseDown={() => {
-                        sendData("Inverter_Rev", 1);
-                      }}
-                      onMouseUp={() => {
-                        sendData("Inverter_Rev", 0);
-                      }}
-                    >
-                      FWD
-                    </span>
-                  </div>
-                  <div
-                    className={css("wrap-icon", { "current-direction": !drt })}
-                  >
-                    <span
-                      onClick={() => {
-                        handleDirection(false);
-                      }}
-                      onMouseDown={() => {
-                        sendData("Inverter_Fwd", 1);
-                      }}
-                      onMouseUp={() => {
-                        sendData("Inverter_Fwd", 0);
-                      }}
-                    >
-                      REV
-                    </span>
-                  </div>
+            <div className={css("control850-image")}>
+              <div className={css("control850")}>
+                <div className={css("start-stop-850")}>
+                  <button className={css("start-850")}>START</button>
+                  <button className={css("stop-850")}>STOP</button>
                 </div>
-              </div>
-              <div className={css("info__status")}>
-                <h3>Status</h3>
-                <div>
-                  <div
-                    className={css(
-                      "stt-off",
-                      { ledOff: ledSttOff },
-                      { ledOn: ledSttOn }
-                    )}
-                  ></div>
+                <div className={css("set-param-850")}>
+                  <span className={css("title-850")}>Red light setting</span>
+                  <Input width="54px" height="24px" />
+                  <span>[s]</span>
                 </div>
+                <div className={css("set-param-850")}>
+                  <span className={css("title-850")}>Green light setting</span>
+                  <Input width="54px" height="24px" />
+                  <span>[s]</span>
+                </div>
+                <div className={css("set-param-850")}>
+                  <span className={css("title-850")}>Yellow light setting</span>
+                  <Input width="54px" height="24px" />
+                  <span>[s]</span>
+                </div>
+                <button className={css("confirm-850")}>CONFIRM</button>
               </div>
-              <div className={css("info__param")}>
-                <h3>SET POINT</h3>
-                <h4>Speed</h4>
-                <span>
-                  <Input width="50px" height="24px" func={dataSpeed} />
-                  (Hz)
-                  <button
-                    onMouseDown={() => {
-                      sendData("Inverter_Confirm", 1);
-                    }}
-                    onMouseUp={() => {
-                      sendData("Inverter_Confirm", 0);
-                    }}
-                    onClick={() => sendData("Inverter_Speed_SP", speed)}
-                  >
-                    OK
-                  </button>
-                </span>
-              </div>
-              <div className={css("info__param")}>
-                <h3>CURRENT</h3>
-                <h4>Speed</h4>
-                <span className={css("value__current")}>
-                  {data["Inverter_Speed_PV"]
-                    ? data["Inverter_Speed_PV"].value.toFixed(3)
-                    : "???"}
-                  <span style={{ position: "relative", left: "14px" }}>
-                    (Hz)
-                  </span>
-                </span>
+              <div className={css("image-850")}>
+                {!data.RedLightA.value &&
+                  !data.GreenLightA.value &&
+                  !data.YellowLightA.value &&
+                  !data.RedLightB.value &&
+                  !data.GreenLightB.value &&
+                  !data.YellowLightB.value && <TrafficLight />}
+                {data.GreenLightA.value && data.RedLightB.value && (
+                  <AgreenBred />
+                )}
+                {data.YellowLightA.value && data.RedLightB.value && (
+                  <AyellowBred />
+                )}
+                {data.RedLightA.value && data.GreenLightB.value && (
+                  <AredBgreen />
+                )}
+                {data.RedLightA.value && data.YellowLightB.value && (
+                  <AredByellow />
+                )}
               </div>
             </div>
-            <Recharts />
           </div>
-        </div>
-        <div className={css("body__right")}>
-          <div className={css("plc1")}>
-            <h1>Panel PLC Micro 820</h1>
-            <div className={css("plc1-body")}>
-              <div className={css("plc1-body-SW")}>
-                <div className={css("body-SW")}>
-                  <Switch
-                    name="I0.0"
-                    status={
-                      data.Micro820_input_1
-                        ? data.Micro820_input_1.value
-                        : false
-                    }
-                  />
-                  <Switch
-                    name="I0.1"
-                    status={
-                      data.Micro820_input_2
-                        ? data.Micro820_input_2.value
-                        : false
-                    }
-                  />
-                  <Switch
-                    name="I0.2"
-                    status={
-                      data.Micro820_input_3
-                        ? data.Micro820_input_3.value
-                        : false
-                    }
-                  />
-                  <Switch
-                    name="I0.3"
-                    status={
-                      data.Micro820_input_4
-                        ? data.Micro820_input_4.value
-                        : false
-                    }
-                  />
+          <div className={css("micro820")}>
+            <h2>Panel Micro 820</h2>
+            <div className={css("status-vol-820")}>
+              <div className={css("status-820")}>
+                <div className={css("input-820")}>
+                  <Status name="I0.0" />
+                  <Status name="I0.1" />
+                  <Status name="I0.2" />
+                  <Status name="I0.3" />
+                  <Status name="I0.4" />
+                  <Status name="I0.5" />
+                  <Status name="I0.6" />
+                  <Status name="I0.7" />
                 </div>
-                <div className={css("body-SW")}>
-                  <Switch
-                    name="I0.4"
-                    status={
-                      data.Micro820_input_5
-                        ? data.Micro820_input_5.value
-                        : false
-                    }
-                  />
-                  <Switch
-                    name="I0.5"
-                    status={
-                      data.Micro820_input_6
-                        ? data.Micro820_input_6.value
-                        : false
-                    }
-                  />
-                  <Switch
-                    name="I0.6"
-                    status={
-                      data.Micro820_input_7
-                        ? data.Micro820_input_7.value
-                        : false
-                    }
-                  />
-                  <Switch
-                    name="I0.7"
-                    status={
-                      data.Micro820_input_8
-                        ? data.Micro820_input_8.value
-                        : false
-                    }
-                  />
+                <div className={css("output-820")}>
+                  <Status name="Q0.0" />
+                  <Status name="Q0.1" />
+                  <Status name="Q0.2" />
+                  <Status name="Q0.3" />
+                  <Status name="Q0.4" />
+                  <Status name="Q0.5" />
+                  <Status name="Q0.6" />
+                  <Status name="Q0.7" />
                 </div>
               </div>
-              <div className={css("plc1-body-vol")}>
-                <h2>Current Voltage</h2>
-                <span className={css("value__current")}>
-                  {data["Micro820_Analog_1"]
-                    ? ((data["Micro820_Analog_1"].value * 10) / 4013).toFixed(2)
-                    : "???"}
-                  <span style={{ position: "relative", left: "24px" }}>
-                    (V)
-                  </span>
-                </span>
+              <div className={css("vol-820")}>
+                <h2>Voltage</h2>
+                <span>######</span>
               </div>
             </div>
           </div>
-          <div className={css("plc2")}>
-            <h1>Pannel PLC Micro 850</h1>
-            <div className={css("btn")}>
-              <button
-                // onClick={() => {
-                //   sendData("StartTraffic");
-                // }}
-                onMouseDown={() => {
-                  sendData("Traffic_Start", 1);
-                }}
-                onMouseUp={() => {
-                  sendData("Traffic_Start", 0);
-                }}
-              >
-                START
-              </button>
-              <button
-                onMouseDown={() => {
-                  sendData("Traffic_Stop", 1);
-                }}
-                onMouseUp={() => {
-                  sendData("Traffic_Stop", 0);
-                }}
-              >
-                STOP
-              </button>
-            </div>
-            <div className={css("plc2__input")}>
-              <div className={css("input-param")}>
-                <span>
-                  <span className={css("info-input-title")}>YellowTime</span>
-                  <Input width="60px" func={dataYellowTime} />
-                  <span>(s)</span>
+        </div>
+        <div className={css("body-right")}>
+          <h2>INVERTER & MOTOR</h2>
+          <div className={css("control-speed-inverter")}>
+            <div className={css("control-inverter")}>
+              <h4>CONTROL</h4>
+              <div className={css("control-detail")}>
+                <button className={css("control-btn")}>START</button>
+                <button className={css("control-btn")}>STOP</button>
+                <button className={css("control-btn")}>FWD</button>
+                <button className={css("control-btn")}>INV</button>
+
+                <span className={css("indicator-light")}>
+                  <Status />
+                  <span>Run</span>
                 </span>
-                <span>
-                  <span className={css("info-input-title")}>RedTime</span>
-                  <Input width="60px" func={dataRedTime} />
-                  (s)
+                <span className={css("indicator-light")}>
+                  <Status />
+                  <span>Fwd</span>
                 </span>
-                <span>
-                  <span className={css("info-input-title")}>GreenTime</span>
-                  <Input width="60px" func={dataGreenTime} />
-                  (s)
+                <span className={css("indicator-light")}>
+                  <Status />
+                  <span>Rev</span>
+                </span>
+                <span className={css("indicator-light")}>
+                  <Status />
+                  <span>Error</span>
                 </span>
               </div>
-              <button onClick={() => sendTrafficTime()}>CONFIRM</button>
             </div>
-            <div className={css("plc2__stt")}>
-              <Status
-                color="red"
-                status={data.RedLightA ? data.RedLightA.value : false}
-                name="Q0.0"
-              />
-              <Status
-                color="yellow"
-                status={data.YellowLightA ? data.YellowLightA.value : false}
-                name="Q0.1"
-              />
-              <Status
-                color="green"
-                status={data.GreenLightA ? data.GreenLightA.value : false}
-                name="Q0.2"
-              />
-              <Status
-                color="red"
-                status={data.RedLightB ? data.RedLightB.value : false}
-                name="Q0.3"
-              />
-              <Status
-                color="yellow"
-                status={data.YellowLightB ? data.YellowLightB.value : false}
-                name="Q0.4"
-              />
-              <Status
-                color="green"
-                status={data.GreenLightB ? data.GreenLightB.value : false}
-                name="Q0.5"
-              />
-              <Status name="Q0.6" />
-              <Status name="Q0.7" />
-            </div>
-            <div className={css("plc2__SW")}>
-              <Switch
-                name="I0.0"
-                status={
-                  data.Micro850_input_1 ? data.Micro850_input_1.value : false
-                }
-              />
-              <Switch
-                name="I0.1"
-                status={
-                  data.Micro850_input_2 ? data.Micro850_input_2.value : false
-                }
-              />
-              <Switch
-                name="I0.2"
-                status={
-                  data.Micro850_input_3 ? data.Micro850_input_3.value : false
-                }
-              />
-              <Switch
-                name="I0.3"
-                status={
-                  data.Micro850_input_4 ? data.Micro850_input_4.value : false
-                }
-              />
-              <Switch
-                name="I0.4"
-                status={
-                  data.Micro850_input_5 ? data.Micro850_input_5.value : false
-                }
-              />
-              <Switch
-                name="I0.5"
-                status={
-                  data.Micro850_input_6 ? data.Micro850_input_6.value : false
-                }
-              />
+            <div className={css("speed-inverter")}>
+              <h4>SPEED</h4>
+              <div className={css("select-speed")}>
+                <button className={css("select-btn")}>10Hz</button>
+                <button className={css("select-btn")}>20Hz</button>
+                <button className={css("select-btn")}>30Hz</button>
+              </div>
+              <div className={css("set-speed")}>
+                <span className={css("title-speed")}>Speed Setting</span>
+                <Input width="54px" height="24px" />
+                <span>[Hz]</span>
+                <button className={css("confirm-btn")}>Confirm</button>
+              </div>
+              <div className={css("current-speed")}>
+                <span className={css("title-speed")}>Current Speed</span>
+                <span className={css("current-value")}></span>
+                <span>[Hz]</span>
+              </div>
             </div>
           </div>
+          <Recharts />
         </div>
       </div>
     </>
