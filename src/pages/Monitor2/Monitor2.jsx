@@ -454,7 +454,7 @@ function Monitor() {
                 <span className={css("title-speed")}>Current Speed</span>
                 <span className={css("current-value")}>
                   {data["Inverter_Speed_PV"]
-                    ? data["Inverter_Speed_PV"].value.toFixed(3)
+                    ? data["Inverter_Speed_PV"].value.toFixed(2)
                     : "???"}
                 </span>
                 <span>[Hz]</span>
