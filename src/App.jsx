@@ -3,7 +3,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Diagram from "./pages/Diagram/Diagram";
 import Monitor from "./pages/Monitor/Monitor";
 import Reports from "./pages/Reports/Reports";
-import Monitor2 from "@src/pages/Monitor2";
+import Monitor2 from "~/pages/Monitor2";
 
 function App() {
   return (

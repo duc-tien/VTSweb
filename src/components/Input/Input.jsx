@@ -1,7 +1,7 @@
 import style from "./Input.module.scss";
 import classNames from "classnames/bind";
 import { useRef, useEffect, useState } from "react";
-import Monitor2 from "@src/pages/Monitor2";
+import Monitor2 from "~/pages/Monitor2";
 
 const css = classNames.bind(style);
 

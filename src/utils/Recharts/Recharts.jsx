@@ -11,7 +11,7 @@ import {
 import { useState, useEffect } from "react";
 import style from "./Recharts.module.scss";
 import classNames from "classnames/bind";
-import hubConnection from "@src/services/signalR/hubConnection";
+import hubConnection from "~/services/signalR/hubConnection";
 const css = classNames.bind(style);
 
 function Recharts() {

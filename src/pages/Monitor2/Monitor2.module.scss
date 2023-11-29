@@ -153,11 +153,40 @@
         }
       }
       .image-850 {
+        position: relative;
         width: 405px;
         height: 270px;
         background-image: url(../../assets/background.png);
         overflow: hidden;
         border-bottom-right-radius: 8px;
+        .time-display {
+          position: absolute;
+          font-size: 13px;
+          text-align: center;
+          line-height: 26px;
+          font-weight: 800;
+          width: 26px;
+          height: 26px;
+          border-radius: 6px;
+          background-color: #ccc;
+          color: #000;
+          &:nth-child(1) {
+            top: 82px;
+            left: 138px;
+          }
+          &:nth-child(2) {
+            top: 160px;
+            left: 138px;
+          }
+          &:nth-child(3) {
+            top: 82px;
+            left: 234px;
+          }
+          &:nth-child(4) {
+            top: 160px;
+            left: 234px;
+          }
+        }
       }
     }
   }
@@ -259,11 +288,14 @@
         flex-wrap: wrap;
         background-color: #fff;
         .indicator-light {
+          position: relative;
+          top: 7px;
+          right: 11px;
+          scale: 0.7;
           display: flex;
           height: 22px;
-          margin-right: 40%;
-          margin-top: 12px;
-          font-size: 14px;
+          margin-top: 2px;
+          font-size: 16px;
           font-weight: 700;
           line-height: 22px;
           span {

@@ -1,6 +1,6 @@
 import Recharts from "../../utils/Recharts/Recharts";
-import Status from "@src/components/Status2";
-import Input from "@src/components/Input";
+import Status from "~/components/Status2";
+import Input from "~/components/Input";
 import style from "./Monitor2.module.scss";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -35,12 +35,12 @@ function Monitor() {
     Micro850_input_4: { value: false },
     Micro850_input_5: { value: false },
     Micro850_input_6: { value: false },
-    RedLightA: { value: false },
-    GreenLightA: { value: false },
-    YellowLightA: { value: false },
-    RedLightB: { value: false },
-    GreenLightB: { value: false },
-    YellowLightB: { value: false },
+    Traffic_RedLightA: { value: false },
+    Traffic_GreenLightA: { value: false },
+    Traffic_YellowLightA: { value: false },
+    Traffic_RedLightB: { value: false },
+    Traffic_GreenLightB: { value: false },
+    Traffic_YellowLightB: { value: false },
     Micro820_input_1: { value: false },
     Micro820_input_2: { value: false },
     Micro820_input_3: { value: false },
@@ -52,7 +52,10 @@ function Monitor() {
     Inverter_Fwd_Status: { value: false },
     Inverter_Rev_Status: { value: false },
     Inverter_Active: { value: false },
+    Inverter_Ready: { value: true },
     Inverter_Error: { value: false },
+    Traffic_Display_A: { value: 0 },
+    Traffic_Display_B: { value: 0 },
   });
   useEffect(() => {
     hubConnection.start();
@@ -69,11 +72,12 @@ function Monitor() {
       hubConnection.connection.off("TagChanged");
     };
   }, [hubConnection.connection]);
+  console.log(data);
 
   const sendData = (type, data) => {
     const payload = [
       {
-        id: `Channel1.Device1.${type}`,
+        id: `Micro.Micro850.${type}`,
         v: Number(data),
       },
     ];
@@ -96,31 +100,31 @@ function Monitor() {
   const sendTrafficTime = () => {
     let yt = [
       {
-        id: "Channel1.Device1.Traffic_YellowTime",
+        id: "Micro.Micro850.Traffic_YellowTime",
         v: Number(timeYellow),
       },
     ];
     let gt = [
       {
-        id: "Channel1.Device1.Traffic_GreenTime",
+        id: "Micro.Micro850.Traffic_GreenTime",
         v: Number(timeYellow),
       },
     ];
     let rt = [
       {
-        id: "Channel1.Device1.Traffic_RedTime",
+        id: "Micro.Micro850.Traffic_RedTime",
         v: Number(timeYellow),
       },
     ];
     let cf = [
       {
-        id: "Channel1.Device1.Traffic_Confirm",
+        id: "Micro.Micro850.Traffic_Confirm",
         v: 1,
       },
     ];
     let cf2 = [
       {
-        id: "Channel1.Device1.Traffic_Confirm",
+        id: "Micro.Micro850.Traffic_Confirm",
         v: 0,
       },
     ];
@@ -233,24 +237,27 @@ function Monitor() {
                 </button>
               </div>
               <div className={css("image-850")}>
-                {!data.RedLightA.value &&
-                  !data.GreenLightA.value &&
-                  !data.YellowLightA.value &&
-                  !data.RedLightB.value &&
-                  !data.GreenLightB.value &&
-                  !data.YellowLightB.value && <TrafficLight />}
-                {data.GreenLightA.value && data.RedLightB.value && (
-                  <AgreenBred />
-                )}
-                {data.YellowLightA.value && data.RedLightB.value && (
-                  <AyellowBred />
-                )}
-                {data.RedLightA.value && data.GreenLightB.value && (
-                  <AredBgreen />
-                )}
-                {data.RedLightA.value && data.YellowLightB.value && (
-                  <AredByellow />
-                )}
+                <div className={css("time-display")}>
+                  {data.Traffic_Display_A.value}
+                </div>
+                <div className={css("time-display")}>
+                  {data.Traffic_Display_B.value}
+                </div>
+                <div className={css("time-display")}>
+                  {data.Traffic_Display_B.value}
+                </div>
+                <div className={css("time-display")}>
+                  {data.Traffic_Display_A.value}
+                </div>
+                {data.Traffic_GreenLightA.value &&
+                  data.Traffic_RedLightB.value && <AgreenBred />}
+                {data.Traffic_YellowLightA.value &&
+                  data.Traffic_RedLightB.value && <AyellowBred />}
+                {data.Traffic_RedLightA.value &&
+                  data.Traffic_GreenLightB.value && <AredBgreen />}
+                {data.Traffic_RedLightA.value &&
+                  data.Traffic_YellowLightB.value && <AredByellow />}
+                {<TrafficLight />}
               </div>
             </div>
           </div>
@@ -315,7 +322,7 @@ function Monitor() {
                 <h2>Voltage</h2>
                 <span>
                   {data["Micro820_Analog_1"]
-                    ? ((data["Micro820_Analog_1"].value * 10) / 4013).toFixed(2)
+                    ? data["Micro820_Analog_1"].value.toFixed(2)
                     : "#####"}
                 </span>
               </div>
@@ -377,20 +384,24 @@ function Monitor() {
                 </button>
 
                 <span className={css("indicator-light")}>
+                  <Status status={data.Inverter_Ready.value} color="green" />
+                  <span>Ready</span>
+                </span>
+                <span className={css("indicator-light")}>
                   <Status status={data.Inverter_Active.value} color="green" />
-                  <span>Run</span>
+                  <span>Active</span>
                 </span>
                 <span className={css("indicator-light")}>
                   <Status
                     status={data.Inverter_Fwd_Status.value}
-                    color="yellow"
+                    color="green"
                   />
                   <span>Fwd</span>
                 </span>
                 <span className={css("indicator-light")}>
                   <Status
                     status={data.Inverter_Rev_Status.value}
-                    color="yellow"
+                    color="green"
                   />
                   <span>Rev</span>
                 </span>
@@ -403,9 +414,24 @@ function Monitor() {
             <div className={css("speed-inverter")}>
               <h4>SPEED</h4>
               <div className={css("select-speed")}>
-                <button className={css("select-btn")}>10Hz</button>
-                <button className={css("select-btn")}>20Hz</button>
-                <button className={css("select-btn")}>30Hz</button>
+                <button
+                  className={css("select-btn")}
+                  onClick={() => sendData("Inverter_Speed_SP", 5)}
+                >
+                  5Hz
+                </button>
+                <button
+                  className={css("select-btn")}
+                  onClick={() => sendData("Inverter_Speed_SP", 10)}
+                >
+                  10Hz
+                </button>
+                <button
+                  className={css("select-btn")}
+                  onClick={() => sendData("Inverter_Speed_SP", 15)}
+                >
+                  15Hz
+                </button>
               </div>
               <div className={css("set-speed")}>
                 <span className={css("title-speed")}>Speed Setting</span>
